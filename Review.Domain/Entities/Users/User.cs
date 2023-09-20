@@ -16,8 +16,8 @@ public class User : IdentityUser, IDomainEntity
     {
         return Result<User>.Create(
             new User()
-        )
-    };
+        );
+    }
 
     private User(bool isActive, string? email, string? phoneNumber, string userId)
     {
