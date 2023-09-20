@@ -1,4 +1,7 @@
 using System.Runtime.CompilerServices;
+using Review.Domains;
+using Review.Entities.Errors;
+using Review.Models.Bases;
 
 namespace Review.Entities.Validators;
 

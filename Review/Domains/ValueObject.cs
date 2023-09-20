@@ -80,7 +80,7 @@ public class ValueObject<T> : IEquatable<ValueObject<T>>
     {
         if (rule.IsBroken())
         {
-            return new DomainValidationError(rule);
+            return new DomainValidationErr(rule);
         }
 
         return default(Success);
