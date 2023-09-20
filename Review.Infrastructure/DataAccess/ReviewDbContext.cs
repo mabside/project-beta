@@ -1,18 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Review.Abstractions.Entities;
+using Review.Domain.Entities.Customers;
 using Review.Domain.Entities.Users;
 
 namespace Review.Infrastructure.DataAccess;
 
-public class ReviewDbContext : IdentityDbContext<User, Role, string>
+public class ReviewDbContext : DbContext
 {
+    public DbSet<Customer> Customers { get; set; } = default!;
+
     public ReviewDbContext(DbContextOptions<ReviewDbContext> options) : base(options)
     {
     }
 
     public ReviewDbContext()
     {
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfigurationsFromAssembly(typeof(ReviewDbContext).Assembly);
+        base.OnModelCreating(builder);
     }
 
     public override int SaveChanges()

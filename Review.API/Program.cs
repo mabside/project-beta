@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Review.API.Constants;
 using Review.Domain.Entities.Users;
 using Review.Infrastructure.DataAccess;
@@ -25,8 +26,13 @@ namespace Review.API
                 options.UseNpgsql(builder.Configuration.GetConnectionString(KeyConstants.DBConnectionProp));
             });
 
-            builder.Services.AddDefaultIdentity<User>()
-                .AddEntityFrameworkStores<ReviewDbContext>();
+            builder.Services.AddDbContext<ReviewUserDbContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString(KeyConstants.DBConnectionProp));
+            });
+
+            builder.Services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<ReviewUserDbContext>();
 
             var app = builder.Build();
 
