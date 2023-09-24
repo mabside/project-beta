@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Review.Abstractions.Entities;
+using Review.Domain.Entities.Businesses;
 using Review.Domain.Entities.Customers;
-using Review.Domain.Entities.Users;
 
 namespace Review.Infrastructure.DataAccess;
 
 public class ReviewDbContext : DbContext
 {
+    public DbSet<Business> Businesses { get; set; } = default!;
+    public DbSet<Category> Categories { get; set; } = default!;
     public DbSet<Customer> Customers { get; set; } = default!;
+    public DbSet<Domain.Entities.Reviews.Feedback> Reviews { get; set; } = default!;
 
     public ReviewDbContext(DbContextOptions<ReviewDbContext> options) : base(options)
     {

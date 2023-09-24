@@ -1,7 +1,4 @@
-
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Review.API.Constants;
 using Review.Domain.Entities.Users;
 using Review.Infrastructure.DataAccess;

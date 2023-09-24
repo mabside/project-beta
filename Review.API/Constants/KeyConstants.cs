@@ -2,5 +2,5 @@
 
 public class KeyConstants
 {
-    public const string DBConnectionProp = "ReviewDBConnection"; 
+    public const string DBConnectionProp = "ReviewDBConnection";
 }

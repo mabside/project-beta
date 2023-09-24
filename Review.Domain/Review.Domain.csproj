@@ -8,9 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Entities\Businesses\" />
     <Folder Include="Entities\Links\" />
-    <Folder Include="Entities\Reviews\" />
     <Folder Include="Entities\Products\" />
     <Folder Include="Entities\Spaces\" />
     <Folder Include="Models\" />

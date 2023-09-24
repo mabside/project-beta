@@ -27,7 +27,7 @@ public class User : IdentityUser, IDomainEntity
             .Validate(OptionalField.Create(email, RegexConstants.EMAIL_PATTERN))
             .Validate(OptionalField.Create(phoneNumber, RegexConstants.PHONE_PATTERN));
 
-        if(result.HasError)
+        if (result.HasError)
             return result.Error;
 
         return result;

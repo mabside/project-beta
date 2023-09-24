@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Review.Abstractions.Entities;
 using Review.Entities.Validators;
 using Review.Extensions;
@@ -15,7 +10,7 @@ public class Role : IdentityRole, IDomainEntity
 {
     public int UserCount { get; private set; } = 0;
     public string Description { get; private set; } = null!;
-    
+
     private Role() { }
 
     private Role(string name, string description)

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Review.Domain.Entities.Businesses;
@@ -13,9 +14,11 @@ using Review.Infrastructure.DataAccess;
 namespace Review.Infrastructure.Migrations.ReviewDb
 {
     [DbContext(typeof(ReviewDbContext))]
-    partial class ReviewDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230924062317_BusinessCategoryandReview")]
+    partial class BusinessCategoryandReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,7 +160,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                     b.ToTable("Customer", "User");
                 });
 
-            modelBuilder.Entity("Review.Domain.Entities.Reviews.Feedback", b =>
+            modelBuilder.Entity("Review.Domain.Entities.Reviews.Review", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,9 +179,6 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("FeedbackType")
-                        .HasColumnType("integer");
-
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text");
 
@@ -193,6 +193,9 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("ReviewType")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Star")
                         .HasColumnType("integer");
 
@@ -203,7 +206,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.HasIndex("BusinessId");
 
-                    b.ToTable("Feedback", "Feedback");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Review.Domain.Entities.Businesses.Business", b =>
@@ -217,7 +220,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Review.Domain.Entities.Reviews.Feedback", b =>
+            modelBuilder.Entity("Review.Domain.Entities.Reviews.Review", b =>
                 {
                     b.HasOne("Review.Domain.Entities.Businesses.Business", "Business")
                         .WithMany("Reviews")
