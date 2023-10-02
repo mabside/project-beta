@@ -2,15 +2,23 @@
 using Review.Abstractions.Entities;
 using Review.Domain.Entities.Businesses;
 using Review.Domain.Entities.Customers;
+using Review.Domain.Entities.Feedbacks;
+using Review.Domain.Entities.Items;
+using Review.Domain.Entities.Links;
+using Review.Domain.Entities.Spaces;
 
 namespace Review.Infrastructure.DataAccess;
 
 public class ReviewDbContext : DbContext
 {
     public DbSet<Business> Businesses { get; set; } = default!;
-    public DbSet<Category> Categories { get; set; } = default!;
+    public DbSet<BusinessCategory> BusinessCategories { get; set; } = default!;
     public DbSet<Customer> Customers { get; set; } = default!;
-    public DbSet<Domain.Entities.Reviews.Feedback> Reviews { get; set; } = default!;
+    public DbSet<Feedback> Feedbacks { get; set; } = default!;
+    public DbSet<Space> Spaces { get; set; } = default!;
+    public DbSet<Item> Items { get; set; } = default!;
+    public DbSet<Link> Links { get; set; } = default!;
+    public DbSet<ItemCategory> ItemCategories { get; set; } = default!;
 
     public ReviewDbContext(DbContextOptions<ReviewDbContext> options) : base(options)
     {

@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Review.Domain.Entities.Businesses;
 
-namespace Review.Infrastructure.DataAccess.Configurations;
+namespace Review.Infrastructure.Configurations;
 
-class CategoriesConfiguration : IEntityTypeConfiguration<Category>
+class CategoriesConfiguration : IEntityTypeConfiguration<BusinessCategory>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public void Configure(EntityTypeBuilder<BusinessCategory> builder)
     {
         builder.HasKey(c => c.Id);
 
@@ -16,6 +16,6 @@ class CategoriesConfiguration : IEntityTypeConfiguration<Category>
         builder.Property(c => c.Description)
             .HasMaxLength(150);
 
-        builder.ToTable(nameof(Category), ConfigurationSettings.BusinessDbschema);
+        builder.ToTable(nameof(BusinessCategory), ConfigurationSettings.BusinessDbschema);
     }
 }

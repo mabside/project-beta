@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Review.Domain.Entities.Businesses;
@@ -13,9 +14,11 @@ using Review.Infrastructure.DataAccess;
 namespace Review.Infrastructure.Migrations.ReviewDb
 {
     [DbContext(typeof(ReviewDbContext))]
-    partial class ReviewDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230924161949_BusinessCategoryandReview3")]
+    partial class BusinessCategoryandReview3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,8 +234,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(225)
-                        .HasColumnType("character varying(225)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -253,8 +255,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<Guid>("SpaceId")
                         .HasColumnType("uuid");
@@ -267,7 +268,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.HasIndex("SpaceId");
 
-                    b.ToTable("Item", "Business");
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("Review.Domain.Entities.Items.ItemCategory", b =>
@@ -285,8 +286,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(225)
-                        .HasColumnType("character varying(225)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -297,12 +297,11 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemCategory", "Business");
+                    b.ToTable("ItemCategory");
                 });
 
             modelBuilder.Entity("Review.Domain.Entities.Links.Link", b =>
@@ -334,7 +333,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Link", "Business");
+                    b.ToTable("Link");
                 });
 
             modelBuilder.Entity("Review.Domain.Entities.Spaces.Space", b =>
@@ -355,8 +354,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(225)
-                        .HasColumnType("character varying(225)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -367,14 +365,13 @@ namespace Review.Infrastructure.Migrations.ReviewDb
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BusinessId");
 
-                    b.ToTable("Space", "Space");
+                    b.ToTable("Space");
                 });
 
             modelBuilder.Entity("Review.Domain.Entities.Businesses.Business", b =>

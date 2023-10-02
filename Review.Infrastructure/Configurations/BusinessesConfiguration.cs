@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Review.Domain.Entities.Businesses;
 
-namespace Review.Infrastructure.DataAccess.Configurations;
+namespace Review.Infrastructure.Configurations;
 
-class BusinessConfiguration : IEntityTypeConfiguration<Business>
+class BusinessesConfiguration : IEntityTypeConfiguration<Business>
 {
     public void Configure(EntityTypeBuilder<Business> builder)
     {

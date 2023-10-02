@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Review.Domain.Entities.Feedbacks;
 
-namespace Review.Infrastructure.DataAccess.Configurations;
+namespace Review.Infrastructure.Configurations;
 
-public class FeedbackConfiguration : IEntityTypeConfiguration<Feedback>
+public class FeedbacksConfiguration : IEntityTypeConfiguration<Feedback>
 {
     public void Configure(EntityTypeBuilder<Feedback> builder)
     {

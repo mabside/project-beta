@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
+    <Folder Include="Usecases\Spaces\" />
+    <Folder Include="Usecases\Users\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Review.Domain\Review.Domain.csproj" />
     <ProjectReference Include="..\Review\Review.csproj" />
   </ItemGroup>
 

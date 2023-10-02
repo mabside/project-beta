@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
+using Review.Domain.Entities.Customers;
 using Review.Domain.Entities.Feedbacks;
+using Review.Domain.Entities.Spaces;
 using Review.Entities.Validators;
 using Review.Extensions;
 using Review.Models.Bases;
@@ -14,16 +16,20 @@ public class Business : BaseEntity<Guid>
     public string? LogoUrl { get; private set; }
     public string? BannerUrl { get; private set; }
     public string? WebsiteUrl { get; private set; }
-
-    public Guid CategoryId { get; private set; }
-
     public Location Location { get; private set; }
-    public virtual Category Category { get; private set; }
+    public ICollection<SocialHandle> SocialHandles { get; private set; }
+        = new List<SocialHandle>();
 
-    public ICollection<SocialHandle> SocialHandles { get; private set; } = new List<SocialHandle>();
+    public Guid BusinessCategoryId { get; private set; }
+    public Guid CustomerId { get; private set; }
+
+    public virtual BusinessCategory Category { get; private set; }
+    public virtual Customer Customer { get; private set; }
 
     public virtual IEnumerable<Feedback> Reviews { get; set; }
      = new List<Feedback>();
+    public virtual IEnumerable<Space> Spaces { get; set; }
+     = new List<Space>();
 
     [JsonIgnore]
     public string FullLocation
@@ -57,7 +63,7 @@ public class Business : BaseEntity<Guid>
         string? logoUrl,
         string? bannerUrl,
         string? websiteUrl,
-        Guid categoryId,
+        Guid businessCategoryId,
         Location location,
         ICollection<SocialHandle> socialHandles)
     {
@@ -67,7 +73,7 @@ public class Business : BaseEntity<Guid>
         LogoUrl = logoUrl;
         BannerUrl = bannerUrl;
         WebsiteUrl = websiteUrl;
-        CategoryId = categoryId;
+        BusinessCategoryId = businessCategoryId;
         Location = location;
         SocialHandles = socialHandles;
     }
@@ -79,7 +85,7 @@ public class Business : BaseEntity<Guid>
         string? logoUrl,
         string? bannerUrl,
         string? websiteUrl,
-        Guid categoryId,
+        Guid businessCategoryId,
         Location location,
         ICollection<SocialHandle> socialHandles)
     {
@@ -91,11 +97,11 @@ public class Business : BaseEntity<Guid>
                 logoUrl: logoUrl,
                 bannerUrl: bannerUrl,
                 websiteUrl: websiteUrl,
-                categoryId: categoryId,
+                businessCategoryId: businessCategoryId,
                 location: location,
                 socialHandles: socialHandles))
             .Validate(RequiredField.Create(name))
-            .Validate(NotNull.Create(categoryId))
+            .Validate(NotNull.Create(businessCategoryId))
             .Validate(NotNull.Create(location));
 
         if (result.HasError)

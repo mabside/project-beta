@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Review.Domain.Entities.Customers;
 
-namespace Review.Infrastructure.DataAccess.Configurations;
+namespace Review.Infrastructure.Configurations;
 
 internal class CustomerConfigurations : IEntityTypeConfiguration<Customer>
 {

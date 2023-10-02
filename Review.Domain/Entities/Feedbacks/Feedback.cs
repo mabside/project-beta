@@ -1,4 +1,6 @@
 ﻿using Review.Domain.Entities.Businesses;
+using Review.Domain.Entities.Items;
+using Review.Domain.Entities.Spaces;
 using Review.Models.Bases;
 
 namespace Review.Domain.Entities.Feedbacks;
@@ -10,40 +12,42 @@ public class Feedback : BaseEntity<Guid>
     public string? AudioUrl { get; private set; }
     public string? VideoUrl { get; private set; }
     public int Star { get; private set; }
-    public FeedbackType FeedbackType { get; set; }
+    public FeedbackType FeedbackType { get; private set; }
 
     public Guid BusinessId { get; private set; }
+    public Guid ItemId { get; private set; }
 
     public virtual Business Business { get; private set; }
+    public virtual Item Item { get; private set; }
 
     private Feedback() { }
 
     private Feedback(
         string note,
-        string? imageUrl,
-        string? audioUrl,
-        string? videoUrl,
         int star,
         FeedbackType reviewType,
-        Guid businessId)
+        Guid businessId,
+        string? imageUrl = null,
+        string? audioUrl = null,
+        string? videoUrl = null)
     {
         Note = note;
-        ImageUrl = imageUrl;
-        AudioUrl = audioUrl;
-        VideoUrl = videoUrl;
         Star = star;
         FeedbackType = reviewType;
         BusinessId = businessId;
+        ImageUrl = imageUrl;
+        AudioUrl = audioUrl;
+        VideoUrl = videoUrl;
     }
 
     public static Result<Feedback> Create(
         string note,
-        string? imageUrl,
-        string? audioUrl,
-        string? videoUrl,
         int star,
         FeedbackType reviewType,
-        Guid businessId)
+        Guid businessId,
+        string? imageUrl = null,
+        string? audioUrl = null,
+        string? videoUrl = null)
     {
         var result = Result<Feedback>.Create(
             new Feedback(

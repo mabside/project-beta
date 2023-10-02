@@ -2,28 +2,28 @@
 using Review.Extensions;
 using Review.Models.Bases;
 
-namespace Review.Domain.Entities.Businesses;
+namespace Review.Domain.Entities.Items;
 
-public class Category : BaseEntity<Guid>
+public class ItemCategory : BaseEntity<Guid>
 {
     public string Name { get; private set; }
     public string Description { get; private set; }
 
-    public ICollection<Business> Businesses { get; set; } = new List<Business>();
+    public ICollection<Item> Items { get; private set; } = new List<Item>();
 
-    private Category() { }
+    private ItemCategory() { }
 
-    private Category(string name, string description)
+    private ItemCategory(string name, string description)
     {
         Name = name;
         Description = description;
     }
 
-    public static Result<Category> Create(
+    public static Result<ItemCategory> Create(
         string name, string description)
     {
-        var result = Result<Category>.Create(
-            new Category(
+        var result = Result<ItemCategory>.Create(
+            new ItemCategory(
                 name: name,
                 description: description))
             .Validate(RequiredField.Create(name))
