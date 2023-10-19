@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Review.Domain.Entities.Businesses;
@@ -13,9 +14,11 @@ using Review.Infrastructure.DataAccess;
 namespace Review.Infrastructure.Migrations.ReviewDb
 {
     [DbContext(typeof(ReviewDbContext))]
-    partial class ReviewDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231019124344_EntityModification")]
+    partial class EntityModification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +56,6 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("character varying(225)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
@@ -66,6 +68,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("character varying(255)");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -112,6 +115,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("character varying(150)");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -146,6 +150,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -190,6 +195,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("uuid");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -243,6 +249,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("uuid");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -286,6 +293,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("character varying(225)");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -322,6 +330,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("integer");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
@@ -354,6 +363,7 @@ namespace Review.Infrastructure.Migrations.ReviewDb
                         .HasColumnType("character varying(225)");
 
                     b.Property<string>("ModifiedBy")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Review.Entities.Validators;
+﻿using Review.Entities.Validators;
 using Review.Extensions;
 using Review.Models.Bases;
 
@@ -17,7 +12,7 @@ public class Link : BaseEntity<Guid>
     private Link() { }
 
     private Link(
-        string code, 
+        string code,
         LinkType linkType)
     {
         Code = code;

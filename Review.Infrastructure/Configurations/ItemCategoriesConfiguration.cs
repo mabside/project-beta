@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Review.Domain.Entities.Items;
-using Review.Domain.Entities.Spaces;
 
 namespace Review.Infrastructure.Configurations;
 

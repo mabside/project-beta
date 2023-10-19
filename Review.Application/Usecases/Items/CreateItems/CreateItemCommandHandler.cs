@@ -2,7 +2,7 @@
 
 namespace Review.Application.Usecases.Items.CreateProduct;
 
-public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand>
+public class CreateItemCommandHandler 
 {
     public Task Handle(CreateItemCommand request, CancellationToken cancellationToken)
     {

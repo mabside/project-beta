@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Review.Domain.DTOs.Feedbacks;
 
 namespace Review.Domain.DTOs.Items;
 
 public record ItemInformation(
     Guid Id,
-    string Description);
+    string Description,
+    string ImageUrl,
+    string LinkCode,
+    string CategoryName,
+    string SpaceName,
+    IReadOnlyCollection<FeedbackInformation> Feedbacks);

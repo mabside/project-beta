@@ -11,7 +11,7 @@ public abstract class BaseEntity<TId> : IEntity<TId>, IAuditableEntity
     public TId Id { get; set; }
     public string CreatedBy { get; set; }
     public DateTime CreatedOn { get; set; } = Clock.Now;
-    public string ModifiedBy { get; set; }
+    public string? ModifiedBy { get; set; }
     public DateTime? ModifiedOn { get; set; }
 
     protected BaseEntity()

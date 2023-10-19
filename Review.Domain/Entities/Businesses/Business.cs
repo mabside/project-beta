@@ -12,7 +12,7 @@ public class Business : BaseEntity<Guid>
 {
     public string Name { get; private set; }
     public string Description { get; private set; }
-    public string? Email { get; private set; }
+    public string Email { get; private set; }
     public string? LogoUrl { get; private set; }
     public string? BannerUrl { get; private set; }
     public string? WebsiteUrl { get; private set; }
@@ -59,11 +59,12 @@ public class Business : BaseEntity<Guid>
     private Business(
         string name,
         string description,
-        string? email,
+        string email,
         string? logoUrl,
         string? bannerUrl,
         string? websiteUrl,
         Guid businessCategoryId,
+        BusinessCategory category,
         Location location,
         ICollection<SocialHandle> socialHandles)
     {
@@ -74,6 +75,7 @@ public class Business : BaseEntity<Guid>
         BannerUrl = bannerUrl;
         WebsiteUrl = websiteUrl;
         BusinessCategoryId = businessCategoryId;
+        Category = category;
         Location = location;
         SocialHandles = socialHandles;
     }
@@ -81,13 +83,14 @@ public class Business : BaseEntity<Guid>
     public static Result<Business> Create(
         string name,
         string description,
-        string? email,
+        string email,
         string? logoUrl,
         string? bannerUrl,
         string? websiteUrl,
         Guid businessCategoryId,
+        BusinessCategory category,
         Location location,
-        ICollection<SocialHandle> socialHandles)
+        ICollection<SocialHandle>? socialHandles)
     {
         var result = Result<Business>.Create(
             new Business(
@@ -97,9 +100,10 @@ public class Business : BaseEntity<Guid>
                 logoUrl: logoUrl,
                 bannerUrl: bannerUrl,
                 websiteUrl: websiteUrl,
+                category: category,
                 businessCategoryId: businessCategoryId,
                 location: location,
-                socialHandles: socialHandles))
+                socialHandles: socialHandles != null ? socialHandles : new List<SocialHandle>()))
             .Validate(RequiredField.Create(name))
             .Validate(NotNull.Create(businessCategoryId))
             .Validate(NotNull.Create(location));

@@ -1,18 +1,17 @@
 ﻿using Review.Domain.Entities.Businesses;
 using Review.Domain.Entities.Items;
-using Review.Domain.Entities.Spaces;
 using Review.Models.Bases;
 
 namespace Review.Domain.Entities.Feedbacks;
 
-public class Feedback : BaseEntity<Guid>
+public partial class Feedback : BaseEntity<Guid>
 {
     public string Note { get; private set; }
     public string? ImageUrl { get; private set; }
     public string? AudioUrl { get; private set; }
     public string? VideoUrl { get; private set; }
     public int Star { get; private set; }
-    public FeedbackType FeedbackType { get; private set; }
+    public string FeedbackType { get; private set; }
 
     public Guid BusinessId { get; private set; }
     public Guid ItemId { get; private set; }
@@ -33,7 +32,7 @@ public class Feedback : BaseEntity<Guid>
     {
         Note = note;
         Star = star;
-        FeedbackType = reviewType;
+        FeedbackType = reviewType.ToString();
         BusinessId = businessId;
         ImageUrl = imageUrl;
         AudioUrl = audioUrl;

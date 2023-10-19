@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Review.Application\Review.Application.csproj" />
     <ProjectReference Include="..\Review.Domain\Review.Domain.csproj" />
   </ItemGroup>
 

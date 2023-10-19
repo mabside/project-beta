@@ -12,7 +12,7 @@ public class Space : BaseEntity<Guid>
     public string Description { get; set; } = default!;
 
     public Guid BusinessId { get; set; }
-    
+
     public virtual Business Business { get; set; } = default!;
     public virtual IEnumerable<Item> Items { get; set; }
      = new List<Item>();
@@ -20,8 +20,8 @@ public class Space : BaseEntity<Guid>
     private Space() { }
 
     private Space(
-        string name, 
-        string description, 
+        string name,
+        string description,
         Guid businessId)
     {
         Name = name;

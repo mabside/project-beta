@@ -7,7 +7,7 @@ using Review.Models.Bases;
 
 namespace Review.Domain.Entities.Items;
 
-public class Item : BaseEntity<Guid>
+public partial class Item : BaseEntity<Guid>
 {
     public string Name { get; private set; } = default!;
     public string Description { get; private set; } = default!;
@@ -16,21 +16,21 @@ public class Item : BaseEntity<Guid>
     public Guid LinkId { get; private set; }
     public Guid ItemCategoryId { get; private set; }
     public Guid SpaceId { get; private set; }
-    
+
     public virtual Link Link { get; private set; } = default!;
     public virtual Space Space { get; private set; } = default!;
     public virtual ItemCategory ItemCategory { get; private set; } = default!;
-    
-    public IEnumerable<Feedback>? Feedbacks { get; private set; }
+
+    public IEnumerable<Feedback> Feedbacks { get; private set; }
      = new List<Feedback>();
 
     public Item() { }
 
     public Item(
-        string name, 
-        Guid linkId, 
-        Guid itemCategoryId, 
-        Guid spaceId, 
+        string name,
+        Guid linkId,
+        Guid itemCategoryId,
+        Guid spaceId,
         IEnumerable<Feedback> feedbacks)
     {
         Name = name;
