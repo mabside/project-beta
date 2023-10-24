@@ -1,11 +1,12 @@
 ﻿using FastEndpoints;
 using MediatR;
+using Review.Application.Usecases.Businesses.GetCustomerBusinesses;
 using Review.Domain.DTOs.Businesses;
 using Review.Models.Bases;
 
-namespace Review.API.Endpoints.Businesses.CreateBusinesses;
+namespace Review.API.Endpoints.Businesses.GetCustomerBusiness;
 
-internal sealed class Endpoint : Endpoint<Request, Result<NewBusiness>, Mapper>
+public class Endpoint : Endpoint<Request, Result<IReadOnlyCollection<BusinessInformation>>>
 {
     private readonly IMediator mediator;
 
@@ -16,19 +17,19 @@ internal sealed class Endpoint : Endpoint<Request, Result<NewBusiness>, Mapper>
 
     public override void Configure()
     {
-        Post("api/businesses");
+        Get("api/businesses/customer/{customerId}");
         AllowAnonymous();
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        var query = Mapper.AsCommand(req);
+        var query = new GetCustomerBusinessQuery(req.CustomerId);
         var result = await this.mediator.Send(query, ct);
 
         await SendResultAsync(result, ct);
     }
 
-    private async Task SendResultAsync(Result<NewBusiness> result, CancellationToken c)
+    private async Task SendResultAsync(Result<IReadOnlyCollection<BusinessInformation>> result, CancellationToken c)
     {
         if (result.HasError)
         {

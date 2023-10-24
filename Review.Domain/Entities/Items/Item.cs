@@ -42,6 +42,7 @@ public partial class Item : BaseEntity<Guid>
 
     public static Result<Item> Create(
         string name,
+
         Guid linkId,
         Guid itemCategoryId,
         Guid spaceId)

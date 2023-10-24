@@ -77,9 +77,9 @@ public abstract class EFContextRepositoryBase<TContext, TEntity, TId>
         return BuildQuery(predicate).Select(selector).ToList();
     }
 
-    public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, params string[] includes)
+    public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, bool asNoTracking = false, params string[] includes)
     {
-        return await BuildQuery(predicate, includes).ToListAsync();
+        return await BuildQuery(predicate, includes, asNoTracking: asNoTracking).ToListAsync();
     }
 
     public virtual async Task<IEnumerable<TResult>> FindAsync<TResult>(

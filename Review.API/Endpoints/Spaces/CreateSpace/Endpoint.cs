@@ -1,11 +1,12 @@
 ﻿using FastEndpoints;
 using MediatR;
 using Review.Domain.DTOs.Businesses;
+using Review.Domain.DTOs.Spaces;
 using Review.Models.Bases;
 
-namespace Review.API.Endpoints.Businesses.CreateBusinesses;
+namespace Review.API.Endpoints.Spaces.CreateSpace;
 
-internal sealed class Endpoint : Endpoint<Request, Result<NewBusiness>, Mapper>
+internal sealed class Endpoint : Endpoint<Request, Result<NewSpace>, Mapper>
 {
     private readonly IMediator mediator;
 
@@ -16,19 +17,19 @@ internal sealed class Endpoint : Endpoint<Request, Result<NewBusiness>, Mapper>
 
     public override void Configure()
     {
-        Post("api/businesses");
+        Post("api/spaces");
         AllowAnonymous();
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        var query = Mapper.AsCommand(req);
-        var result = await this.mediator.Send(query, ct);
+        var command = Mapper.AsCommand(req);
+        var result = await this.mediator.Send(command, ct);
 
         await SendResultAsync(result, ct);
     }
 
-    private async Task SendResultAsync(Result<NewBusiness> result, CancellationToken c)
+    private async Task SendResultAsync(Result<NewSpace> result, CancellationToken c)
     {
         if (result.HasError)
         {

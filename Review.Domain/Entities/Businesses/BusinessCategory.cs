@@ -4,7 +4,7 @@ using Review.Models.Bases;
 
 namespace Review.Domain.Entities.Businesses;
 
-public class BusinessCategory : BaseEntity<Guid>
+public partial class BusinessCategory : BaseEntity<Guid>
 {
     public string Name { get; private set; }
     public string Description { get; private set; }

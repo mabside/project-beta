@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using MediatR;
+﻿using MediatR;
 using Review.DataAccess;
 using Review.Domain.DTOs.Businesses;
 using Review.Domain.Entities.Businesses;
@@ -17,7 +16,7 @@ public class CreateBusinessCommandHandler : IRequestHandler<CreateBusinessComman
     }
 
     public async Task<Result<NewBusiness>> Handle(
-        CreateBusinessCommand command, 
+        CreateBusinessCommand command,
         CancellationToken cancellationToken)
     {
         var newLocationResult = Location.Create(
@@ -28,7 +27,7 @@ public class CreateBusinessCommandHandler : IRequestHandler<CreateBusinessComman
             country: command.Country,
             postalCode: command.PostalCode);
 
-        if(newLocationResult.HasError)
+        if (newLocationResult.HasError)
             return newLocationResult.Error;
 
         var newLocation = newLocationResult.Value;
@@ -38,8 +37,17 @@ public class CreateBusinessCommandHandler : IRequestHandler<CreateBusinessComman
 
         if (businessCategory == null)
             return new Error(
-                "invalid business category", 
-                "Invalid.Category", 
+                "invalid business category",
+                "Invalid.Category",
+                false);
+
+        var customer = await uow.CustomerRepository()
+            .GetAsync(command.CustomerId);
+
+        if (customer == null)
+            return new Error(
+                "invalid customer",
+                "Invalid.Customer",
                 false);
 
         var newBusinessResult = Business.Create(
@@ -51,10 +59,12 @@ public class CreateBusinessCommandHandler : IRequestHandler<CreateBusinessComman
             websiteUrl: command.WebsiteUrl,
             businessCategoryId: command.BusinessCategoryId,
             category: businessCategory,
+            customerId: command.CustomerId,
+            customer: customer,
             location: newLocation,
             socialHandles: null);
 
-        if(newBusinessResult.HasError)
+        if (newBusinessResult.HasError)
             return newBusinessResult.Error;
 
         var newBusiness = newBusinessResult.Value;

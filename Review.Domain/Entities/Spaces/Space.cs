@@ -6,15 +6,15 @@ using Review.Models.Bases;
 
 namespace Review.Domain.Entities.Spaces;
 
-public class Space : BaseEntity<Guid>
+public partial class Space : BaseEntity<Guid>
 {
-    public string Name { get; set; } = default!;
-    public string Description { get; set; } = default!;
+    public string Name { get; private set; } = default!;
+    public string Description { get; private set; } = default!;
 
-    public Guid BusinessId { get; set; }
+    public Guid BusinessId { get; private set; }
 
-    public virtual Business Business { get; set; } = default!;
-    public virtual IEnumerable<Item> Items { get; set; }
+    public virtual Business Business { get; private set; } = default!;
+    public virtual IEnumerable<Item> Items { get; private set; }
      = new List<Item>();
 
     private Space() { }

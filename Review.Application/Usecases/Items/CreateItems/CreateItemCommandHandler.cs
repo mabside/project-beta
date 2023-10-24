@@ -1,11 +1,27 @@
 ﻿using MediatR;
+using Review.DataAccess;
+using Review.Domain.DTOs.Items;
+using Review.Domain.Entities.Items;
+using Review.Models.Bases;
 
 namespace Review.Application.Usecases.Items.CreateProduct;
 
-public class CreateItemCommandHandler 
+public class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, Result<NewItem>>
 {
-    public Task Handle(CreateItemCommand request, CancellationToken cancellationToken)
+    private readonly IUnitOfWork uow;
+
+    public CreateItemCommandHandler(IUnitOfWork uow)
     {
-        throw new NotImplementedException();
+        this.uow = uow;
+    }
+
+    public Task<Result<NewItem>> Handle(CreateItemCommand command, CancellationToken cancellationToken)
+    {
+        // create item
+        var newItemResult = Item.Create(
+            name: command.Name,
+            )
+
+        // create link
     }
 }

@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Review.Domain.DTOs.Businesses;
-using Review.Domain.Entities.Businesses;
 using Review.Models.Bases;
 
 namespace Review.Application.Usecases.Businesses.CeateBusinesses;
@@ -18,5 +17,5 @@ public record CreateBusinessCommand(
     string Street,
     string Country,
     string PostalCode,
-    BusinessCategory Category,
-    Guid BusinessCategoryId) : IRequest<Result<NewBusiness>>;
+    Guid BusinessCategoryId,
+    Guid CustomerId) : IRequest<Result<NewBusiness>>;

@@ -37,8 +37,31 @@ public class ReviewDbContext : DbContext
     public override int SaveChanges()
     {
         SetTimeStamps();
+        //set time stamp, raise event and do other stuffs here
         return base.SaveChanges();
     }
+
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {
+        SetTimeStamps();
+        //set time stamp, raise event and do other stuffs here
+        return base.SaveChanges(acceptAllChangesOnSuccess);
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        SetTimeStamps();
+        //set time stamp, raise event and do other stuffs here
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        SetTimeStamps();
+        //set time stamp, raise event and do other stuffs here
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+
     private void SetTimeStamps()
     {
         ChangeTracker.DetectChanges();

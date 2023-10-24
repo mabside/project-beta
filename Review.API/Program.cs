@@ -25,21 +25,16 @@ namespace Review.API
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString(KeyConstants.DBConnectionProp));
             });
+
             builder.Services.AddDbContext<ReviewUserDbContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString(KeyConstants.DBConnectionProp));
             });
+
             builder.Services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ReviewUserDbContext>();
 
             var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
 
             app.UseFastEndpoints()
                 .UseSwaggerGen();

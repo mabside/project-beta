@@ -20,6 +20,7 @@ public static class Extension
         services.AddScoped<IItemRepository, ItemRepository>();
         services.AddScoped<IBusinessRepository, BusinessRepository>();
         services.AddScoped<IBusinessCategoryRepository, BusinessCategoryRepository>();
+        services.AddScoped<ISpaceRepository, SpaceRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;

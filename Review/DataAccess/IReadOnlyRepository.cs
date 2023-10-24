@@ -15,7 +15,7 @@ public interface IReadOnlyRepository<TEntity, TId>
     Task<int> CountAsync(Expression<Func<TEntity, bool>>? predicate = null);
     IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate, params string[] includes);
     IEnumerable<TResult> Find<TResult>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TResult>> selector);
-    Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, params string[] includes);
+    Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, bool asNoTracking = false, params string[] includes);
     Task<IEnumerable<TResult>> FindAsync<TResult>(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TResult>> selector);
     TEntity? Get(TId id, bool asNoTracking = false, params string[] includes);
     TResult? Get<TResult>(TId id, Expression<Func<TEntity, TResult>> selector, bool asNoTracking = false);

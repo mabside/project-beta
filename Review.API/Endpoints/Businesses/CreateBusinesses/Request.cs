@@ -7,7 +7,7 @@ public class Request
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public string LogoUrl { get; set; } = string.Empty; 
+    public string LogoUrl { get; set; } = string.Empty;
     public string BannerUrl { get; set; } = string.Empty;
     public string WebsiteUrl { get; set; } = string.Empty;
     public string Number { get; set; } = string.Empty;
@@ -17,6 +17,7 @@ public class Request
     public string Country { get; set; } = string.Empty;
     public string PostalCode { get; set; } = string.Empty;
     public Guid BusinessCategoryId { get; set; }
+    public Guid CustomerId { get; set; }
 
     public static implicit operator CreateBusinessCommand(Request request)
     {
@@ -33,6 +34,7 @@ public class Request
             Street: request.Street,
             Country: request.Country,
             PostalCode: request.PostalCode,
+            CustomerId: request.CustomerId,
             BusinessCategoryId: request.BusinessCategoryId);
     }
 }

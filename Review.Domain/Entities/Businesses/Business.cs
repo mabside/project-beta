@@ -8,7 +8,7 @@ using Review.Models.Bases;
 
 namespace Review.Domain.Entities.Businesses;
 
-public class Business : BaseEntity<Guid>
+public partial class Business : BaseEntity<Guid>
 {
     public string Name { get; private set; }
     public string Description { get; private set; }
@@ -65,6 +65,8 @@ public class Business : BaseEntity<Guid>
         string? websiteUrl,
         Guid businessCategoryId,
         BusinessCategory category,
+        Guid customerId,
+        Customer customer,
         Location location,
         ICollection<SocialHandle> socialHandles)
     {
@@ -76,6 +78,8 @@ public class Business : BaseEntity<Guid>
         WebsiteUrl = websiteUrl;
         BusinessCategoryId = businessCategoryId;
         Category = category;
+        CustomerId = customerId;
+        Customer = customer;
         Location = location;
         SocialHandles = socialHandles;
     }
@@ -89,6 +93,8 @@ public class Business : BaseEntity<Guid>
         string? websiteUrl,
         Guid businessCategoryId,
         BusinessCategory category,
+        Guid customerId,
+        Customer customer,
         Location location,
         ICollection<SocialHandle>? socialHandles)
     {
@@ -102,6 +108,8 @@ public class Business : BaseEntity<Guid>
                 websiteUrl: websiteUrl,
                 category: category,
                 businessCategoryId: businessCategoryId,
+                customerId: customerId,
+                customer: customer,
                 location: location,
                 socialHandles: socialHandles != null ? socialHandles : new List<SocialHandle>()))
             .Validate(RequiredField.Create(name))

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Review.Application.Interfaces;
+﻿using Review.Application.Interfaces;
 using Review.DataAccess;
 using Review.Infrastructure.DataAccess.Repositories;
 
@@ -31,9 +30,19 @@ public class UnitOfWork : IUnitOfWork
         return new BusinessRepository(_databaseContext);
     }
 
+    public ICustomerRepository CustomerRepository()
+    {
+        return new CustomerRepository(_databaseContext);
+    }
+
     public IBusinessCategoryRepository BusinessCategoryRepository()
     {
         return new BusinessCategoryRepository(_databaseContext);
+    }
+
+    public ISpaceRepository SpaceRepository()
+    {
+        return new SpaceRepository(_databaseContext);
     }
 
     public Task<int> CommitAsync(CancellationToken cancellationToken)
