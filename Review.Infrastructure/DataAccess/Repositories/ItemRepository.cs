@@ -11,3 +11,11 @@ internal sealed class ItemRepository
     {
     }
 }
+
+internal sealed class ItemCategoryRepository
+    : EFContextRepositoryBase<ReviewDbContext, ItemCategory, Guid>, IItemCategoryRepository
+{
+    public ItemCategoryRepository(ReviewDbContext context) : base(context)
+    {
+    }
+}

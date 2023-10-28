@@ -1,10 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 using Review.Domain.Entities.Customers;
 using Review.Domain.Entities.Feedbacks;
+using Review.Domain.Entities.Items;
 using Review.Domain.Entities.Spaces;
 using Review.Entities.Validators;
 using Review.Extensions;
 using Review.Models.Bases;
+using Review.Utilities;
 
 namespace Review.Domain.Entities.Businesses;
 
@@ -16,6 +18,7 @@ public partial class Business : BaseEntity<Guid>
     public string? LogoUrl { get; private set; }
     public string? BannerUrl { get; private set; }
     public string? WebsiteUrl { get; private set; }
+    public string Slug { get; private set; }
     public Location Location { get; private set; }
     public ICollection<SocialHandle> SocialHandles { get; private set; }
         = new List<SocialHandle>();
@@ -120,5 +123,12 @@ public partial class Business : BaseEntity<Guid>
             return result.Error;
 
         return result.Value;
+    }
+
+    public Business EmbedSlug()
+    {
+        Slug = SlugUtil.Slugify(this.Name);
+
+        return this;
     }
 }

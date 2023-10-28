@@ -45,6 +45,11 @@ public class UnitOfWork : IUnitOfWork
         return new SpaceRepository(_databaseContext);
     }
 
+    public IItemCategoryRepository ItemCategoryRepository()
+    {
+        return new ItemCategoryRepository(_databaseContext);
+    }
+
     public Task<int> CommitAsync(CancellationToken cancellationToken)
     {
         return _databaseContext.SaveChangesAsync(cancellationToken);

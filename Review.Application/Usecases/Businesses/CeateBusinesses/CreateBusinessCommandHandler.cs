@@ -69,8 +69,9 @@ public class CreateBusinessCommandHandler : IRequestHandler<CreateBusinessComman
 
         var newBusiness = newBusinessResult.Value;
 
-        uow.BusinessRepository().Add(newBusiness);
+        newBusiness = newBusiness.EmbedSlug();
 
+        uow.BusinessRepository().Add(newBusiness);
         await uow.CommitAsync(cancellationToken);
 
         return new NewBusiness(newBusiness.Id);

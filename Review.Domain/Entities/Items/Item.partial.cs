@@ -12,7 +12,6 @@ public partial class Item
         (Id: item.Id,
          Description: item.Description,
          ImageUrl: item.ImageUrl,
-         LinkCode: item.Link.Code,
          CategoryName: item.ItemCategory.Name,
          SpaceName: item.Space.Name,
          Feedbacks: item.Feedbacks.Select(f => (FeedbackInformation)f).ToImmutableList());

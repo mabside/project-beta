@@ -18,6 +18,7 @@ public static class Extension
         });
 
         services.AddScoped<IItemRepository, ItemRepository>();
+        services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
         services.AddScoped<IBusinessRepository, BusinessRepository>();
         services.AddScoped<IBusinessCategoryRepository, BusinessCategoryRepository>();
         services.AddScoped<ISpaceRepository, SpaceRepository>();

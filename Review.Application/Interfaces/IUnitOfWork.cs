@@ -5,6 +5,7 @@ namespace Review.DataAccess;
 public interface IUnitOfWork
 {
     IItemRepository ItemRepository();
+    IItemCategoryRepository ItemCategoryRepository();
     IBusinessRepository BusinessRepository();
     IBusinessCategoryRepository BusinessCategoryRepository();
     ICustomerRepository CustomerRepository();
