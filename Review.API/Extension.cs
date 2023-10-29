@@ -1,6 +1,8 @@
 ﻿using Review.Application.Interfaces;
+using Review.Application.Interfaces.Providers;
 using Review.Application.Usecases.Items.CreateProduct;
 using Review.DataAccess;
+using Review.Infrastructure.Brokers.Providers;
 using Review.Infrastructure.DataAccess;
 using Review.Infrastructure.DataAccess.Repositories;
 
@@ -23,6 +25,8 @@ public static class Extension
         services.AddScoped<IBusinessCategoryRepository, BusinessCategoryRepository>();
         services.AddScoped<ISpaceRepository, SpaceRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        services.AddScoped<IUploadService, CloudinaryService>();
 
         return services;
     }

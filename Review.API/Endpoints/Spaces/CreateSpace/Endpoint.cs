@@ -1,6 +1,5 @@
 ﻿using FastEndpoints;
 using MediatR;
-using Review.Domain.DTOs.Businesses;
 using Review.Domain.DTOs.Spaces;
 using Review.Models.Bases;
 

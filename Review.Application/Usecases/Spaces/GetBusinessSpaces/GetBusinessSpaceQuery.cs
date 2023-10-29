@@ -4,5 +4,5 @@ using Review.Models.Bases;
 
 namespace Review.Application.Usecases.Spaces.GetBusinessSpaces;
 
-public record GetBusinessSpaceQuery(Guid BusinessId) 
+public record GetBusinessSpaceQuery(Guid BusinessId)
     : IRequest<Result<IReadOnlyCollection<SpaceInformation>>>;

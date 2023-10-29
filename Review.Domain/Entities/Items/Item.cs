@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-using Review.Domain.Entities.Feedbacks;
-using Review.Domain.Entities.Links;
+﻿using Review.Domain.Entities.Feedbacks;
 using Review.Domain.Entities.Spaces;
 using Review.Entities.Validators;
 using Review.Extensions;
@@ -29,11 +27,15 @@ public partial class Item : BaseEntity<Guid>
 
     public Item(
         string name,
+        string description,
+        string imageUrl,
         Guid itemCategoryId,
         Guid spaceId,
         IEnumerable<Feedback> feedbacks)
     {
         Name = name;
+        Description = description;
+        ImageUrl = imageUrl;
         ItemCategoryId = itemCategoryId;
         SpaceId = spaceId;
         Feedbacks = new List<Feedback>();
@@ -43,15 +45,20 @@ public partial class Item : BaseEntity<Guid>
         Guid itemCategoryId,
         Guid spaceId,
         string name,
-        string description)
+        string description,
+        string imageUrl)
     {
         var result = Result<Item>.Create(
             new Item(
                 name: name,
                 itemCategoryId: itemCategoryId,
+                description: description,
                 spaceId: spaceId,
+                imageUrl: imageUrl,
                 feedbacks: new List<Feedback>()))
-            .Validate(RequiredField.Create(name));
+            .Validate(RequiredField.Create(name))
+            .Validate(RequiredField.Create(description))
+            .Validate(RequiredField.Create(imageUrl));
 
         if (result.HasError)
             return result.Error;

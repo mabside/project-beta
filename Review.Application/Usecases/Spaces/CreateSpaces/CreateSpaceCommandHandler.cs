@@ -16,7 +16,7 @@ public class CreateSpaceCommandHandler : IRequestHandler<CreateSpaceCommand, Res
     }
 
     public async Task<Result<NewSpace>> Handle(
-        CreateSpaceCommand request, 
+        CreateSpaceCommand request,
         CancellationToken cancellationToken)
     {
         var result = Space.Create(

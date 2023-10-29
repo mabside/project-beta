@@ -1,8 +1,6 @@
 ﻿using FastEndpoints;
 using MediatR;
-using Review.Domain.DTOs.Items;
 using Review.Domain.DTOs.Spaces;
-using Review.Entities.QueryObjects;
 using Review.Models.Bases;
 
 namespace Review.API.Endpoints.Spaces.GetBusinessSpaces;

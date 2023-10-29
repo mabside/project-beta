@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using FastEndpoints;
+﻿using FastEndpoints;
 using MediatR;
 using Review.Application.Usecases.Businesses.GetCustomerBusinesses;
 using Review.Domain.DTOs.Businesses;

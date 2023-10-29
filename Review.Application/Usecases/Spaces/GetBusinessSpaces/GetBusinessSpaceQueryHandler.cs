@@ -6,7 +6,7 @@ using Review.Models.Bases;
 
 namespace Review.Application.Usecases.Spaces.GetBusinessSpaces;
 
-internal sealed class GetBusinessSpaceQueryHandler 
+internal sealed class GetBusinessSpaceQueryHandler
     : IRequestHandler<GetBusinessSpaceQuery, Result<IReadOnlyCollection<SpaceInformation>>>
 {
     private readonly IUnitOfWork uow;
@@ -17,11 +17,11 @@ internal sealed class GetBusinessSpaceQueryHandler
     }
 
     public async Task<Result<IReadOnlyCollection<SpaceInformation>>> Handle(
-        GetBusinessSpaceQuery query, 
+        GetBusinessSpaceQuery query,
         CancellationToken cancellationToken)
     {
         var spaces = await this.uow.SpaceRepository().FindAsync(
-            space => space.BusinessId == query.BusinessId, 
+            space => space.BusinessId == query.BusinessId,
             asNoTracking: true);
 
         if (spaces == null)

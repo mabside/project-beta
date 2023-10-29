@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Review.Domain.DTOs.Items;
 using Review.Models.Bases;
 
@@ -11,4 +12,4 @@ public record CreateItemCommand(
     Guid SpaceId,
     string Name,
     string Description,
-    string ImageUrl) : IRequest<Result<NewItem>>;
+    IFormFile Image) : IRequest<Result<NewItem>>;

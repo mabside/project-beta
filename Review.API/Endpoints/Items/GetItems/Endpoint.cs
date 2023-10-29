@@ -1,5 +1,4 @@
-﻿using System.Xml.Schema;
-using FastEndpoints;
+﻿using FastEndpoints;
 using MediatR;
 using Review.Domain.DTOs.Items;
 using Review.Entities.QueryObjects;

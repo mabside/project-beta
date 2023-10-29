@@ -22,7 +22,8 @@ internal class GetItemsQueryHandler : IRequestHandler<GetItemsQuery, Result<Pagi
     {
         var itemList = await this.repository.GetAllAsync(
             item => item.SpaceId == request.SpaceId &&
-            item.Space.BusinessId == request.BusinessId, includes: nameof(Item.Space));
+            item.Space.BusinessId == request.BusinessId, 
+            includes: new string[] { nameof(Item.Space), nameof(Item.ItemCategory) });
 
         if (itemList == null)
             return new NullError("Space is empty");

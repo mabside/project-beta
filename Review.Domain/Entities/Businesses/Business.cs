@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Review.Domain.Entities.Customers;
 using Review.Domain.Entities.Feedbacks;
-using Review.Domain.Entities.Items;
 using Review.Domain.Entities.Spaces;
 using Review.Entities.Validators;
 using Review.Extensions;

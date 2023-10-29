@@ -2,6 +2,8 @@ using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 using Review.API.Constants;
+using Review.Application.Constants;
+using Review.Application.Options;
 using Review.Domain.Entities.Users;
 using Review.Infrastructure.DataAccess;
 
@@ -33,6 +35,9 @@ namespace Review.API
 
             builder.Services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ReviewUserDbContext>();
+
+            builder.Services.Configure<CloudinarySettings>(
+                builder.Configuration.GetSection(Sections.CLOUDINARY));
 
             var app = builder.Build();
 
