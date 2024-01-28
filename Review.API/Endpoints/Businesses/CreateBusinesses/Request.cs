@@ -1,6 +1,6 @@
-﻿using Review.Application.Usecases.Businesses.CeateBusinesses;
+﻿using Byhands.Application.Usecases.Businesses.CeateBusinesses;
 
-namespace Review.API.Endpoints.Businesses.CreateBusinesses;
+namespace Byhands.API.Endpoints.Businesses.CreateBusinesses;
 
 public class Request
 {

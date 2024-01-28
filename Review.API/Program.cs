@@ -1,13 +1,13 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
-using Review.API.Constants;
-using Review.Application.Constants;
-using Review.Application.Options;
-using Review.Domain.Entities.Users;
-using Review.Infrastructure.DataAccess;
+using Byhands.API.Constants;
+using Byhands.Application.Constants;
+using Byhands.Application.Options;
+using Byhands.Domain.Entities.Users;
+using Byhands.Infrastructure.DataAccess;
 
-namespace Review.API
+namespace Byhands.API
 {
     public class Program
     {
@@ -23,18 +23,18 @@ namespace Review.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddApplication();
 
-            builder.Services.AddDbContext<ReviewDbContext>(options =>
+            builder.Services.AddDbContext<ByhandsDbContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString(KeyConstants.DBConnectionProp));
             });
 
-            builder.Services.AddDbContext<ReviewUserDbContext>(options =>
+            builder.Services.AddDbContext<ByhandsUserDbContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString(KeyConstants.DBConnectionProp));
             });
 
             builder.Services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<ReviewUserDbContext>();
+                .AddEntityFrameworkStores<ByhandsUserDbContext>();
 
             builder.Services.Configure<CloudinarySettings>(
                 builder.Configuration.GetSection(Sections.CLOUDINARY));

@@ -1,4 +1,4 @@
-﻿namespace Review.Entities.QueryObjects;
+﻿namespace Byhands.Entities.QueryObjects;
 
 public class PaginatedQuery<T>
 {

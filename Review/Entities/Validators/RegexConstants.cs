@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Review.Entities.Validators
+namespace Byhands.Entities.Validators
 {
     public class RegexConstants
     {

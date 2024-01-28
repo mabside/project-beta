@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Review.Domain.DTOs.Businesses;
-using Review.Models.Bases;
+using Byhands.Domain.DTOs.Businesses;
+using Byhands.Models.Bases;
 
-namespace Review.Application.Usecases.Businesses.GetCustomerBusinesses;
+namespace Byhands.Application.Usecases.Businesses.GetCustomerBusinesses;
 
 public record GetCustomerBusinessQuery(Guid CustomerId)
     : IRequest<Result<IReadOnlyCollection<BusinessInformation>>>;

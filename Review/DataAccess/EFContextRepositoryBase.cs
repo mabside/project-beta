@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Review.Abstractions.Entities;
+using Byhands.Abstractions.Entities;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public abstract class EFContextRepositoryBase<TContext, TEntity, TId>
     : IWriteOnlyRepository<TEntity, TId>,

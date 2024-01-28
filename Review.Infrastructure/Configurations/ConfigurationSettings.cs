@@ -1,4 +1,4 @@
-﻿namespace Review.Infrastructure.Configurations;
+﻿namespace Byhands.Infrastructure.Configurations;
 
 internal class ConfigurationSettings
 {

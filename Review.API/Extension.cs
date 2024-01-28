@@ -1,12 +1,12 @@
-﻿using Review.Application.Interfaces;
-using Review.Application.Interfaces.Providers;
-using Review.Application.Usecases.Items.CreateProduct;
-using Review.DataAccess;
-using Review.Infrastructure.Brokers.Providers;
-using Review.Infrastructure.DataAccess;
-using Review.Infrastructure.DataAccess.Repositories;
+﻿using Byhands.Application.Interfaces;
+using Byhands.Application.Interfaces.Providers;
+using Byhands.Application.Usecases.Products.CreateProduct;
+using Byhands.DataAccess;
+using Byhands.Infrastructure.Brokers.Providers;
+using Byhands.Infrastructure.DataAccess;
+using Byhands.Infrastructure.DataAccess.Repositories;
 
-namespace Review.API;
+namespace Byhands.API;
 
 public static class Extension
 {
@@ -16,14 +16,13 @@ public static class Extension
 
         services.AddMediatR(config =>
         {
-            config.RegisterServicesFromAssembly(typeof(CreateItemCommand).Assembly);
+            config.RegisterServicesFromAssembly(typeof(CreateProductCommand).Assembly);
         });
 
-        services.AddScoped<IItemRepository, ItemRepository>();
-        services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductCategoryRepository, productCategoryRepository>();
         services.AddScoped<IBusinessRepository, BusinessRepository>();
         services.AddScoped<IBusinessCategoryRepository, BusinessCategoryRepository>();
-        services.AddScoped<ISpaceRepository, SpaceRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IUploadService, CloudinaryService>();

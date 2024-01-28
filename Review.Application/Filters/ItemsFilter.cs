@@ -1,6 +1,6 @@
-﻿namespace Review.Application.Filters;
+﻿namespace Byhands.Application.Filters;
 
-public class ItemsFilter
+public class ProductsFilter
 {
     public string? Name { get; set; }
 }

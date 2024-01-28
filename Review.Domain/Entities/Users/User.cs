@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Review.Abstractions.Entities;
-using Review.Entities.Validators;
-using Review.Extensions;
-using Review.Models.Bases;
+using Byhands.Abstractions.Entities;
+using Byhands.Entities.Validators;
+using Byhands.Extensions;
+using Byhands.Models.Bases;
 
-namespace Review.Domain.Entities.Users;
+namespace Byhands.Domain.Entities.Users;
 
 public class User : IdentityUser, IDomainEntity
 {

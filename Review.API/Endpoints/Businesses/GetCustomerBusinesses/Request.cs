@@ -1,4 +1,4 @@
-﻿namespace Review.API.Endpoints.Businesses.GetCustomerBusiness;
+﻿namespace Byhands.API.Endpoints.Businesses.GetCustomerBusiness;
 
 public class Request
 {

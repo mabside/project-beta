@@ -1,6 +1,6 @@
-﻿using Review.Domain.DTOs.Businesses;
+﻿using Byhands.Domain.DTOs.Businesses;
 
-namespace Review.Domain.Entities.Businesses;
+namespace Byhands.Domain.Entities.Businesses;
 
 public partial class BusinessCategory
 {

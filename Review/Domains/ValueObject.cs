@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using Review.Abstractions;
-using Review.Models.Bases;
+using Byhands.Abstractions;
+using Byhands.Models.Bases;
 
-namespace Review.Domains;
+namespace Byhands.Domains;
 
 public class ValueObject<T> : IEquatable<ValueObject<T>>
 {

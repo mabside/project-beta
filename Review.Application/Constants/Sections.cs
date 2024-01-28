@@ -1,4 +1,4 @@
-﻿namespace Review.Application.Constants;
+﻿namespace Byhands.Application.Constants;
 
 public class Sections
 {

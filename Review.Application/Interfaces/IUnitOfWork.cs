@@ -1,14 +1,13 @@
-﻿using Review.Application.Interfaces;
+﻿using Byhands.Application.Interfaces;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public interface IUnitOfWork
 {
-    IItemRepository ItemRepository();
-    IItemCategoryRepository ItemCategoryRepository();
+    IProductRepository ProductRepository();
+    IProductCategoryRepository productCategoryRepository();
     IBusinessRepository BusinessRepository();
     IBusinessCategoryRepository BusinessCategoryRepository();
     ICustomerRepository CustomerRepository();
-    ISpaceRepository SpaceRepository();
     Task<int> CommitAsync(CancellationToken cancellationToken);
 }

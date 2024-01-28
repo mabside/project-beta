@@ -1,11 +1,11 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Review.Abstractions.Entities;
-using Review.Domain;
-using Review.Entities.QueryObjects;
-using Review.Extensions;
+using Byhands.Abstractions.Entities;
+using Byhands.Domain;
+using Byhands.Entities.QueryObjects;
+using Byhands.Extensions;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public abstract class PaginatedRepository<TDbContext, TEntity, TQueryFilter, TId> :
     EFContextRepositoryBase<TDbContext, TEntity, TId>,

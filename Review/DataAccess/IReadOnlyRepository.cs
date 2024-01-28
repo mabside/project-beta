@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using Review.Abstractions.Entities;
+using Byhands.Abstractions.Entities;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public interface IReadOnlyRepository<TEntity, TId>
         where TEntity : IEntity<TId>

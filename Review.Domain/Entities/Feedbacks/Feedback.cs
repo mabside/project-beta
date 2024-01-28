@@ -1,8 +1,7 @@
-﻿using Review.Domain.Entities.Businesses;
-using Review.Domain.Entities.Items;
-using Review.Models.Bases;
+﻿using Byhands.Domain.Entities.Products;
+using Byhands.Models.Bases;
 
-namespace Review.Domain.Entities.Feedbacks;
+namespace Byhands.Domain.Entities.Feedbacks;
 
 public partial class Feedback : BaseEntity<Guid>
 {
@@ -13,27 +12,23 @@ public partial class Feedback : BaseEntity<Guid>
     public int Star { get; private set; }
     public string FeedbackType { get; private set; }
 
-    public Guid BusinessId { get; private set; }
-    public Guid ItemId { get; private set; }
+    public Guid ProductId { get; private set; }
 
-    public virtual Business Business { get; private set; }
-    public virtual Item Item { get; private set; }
+    public virtual Product Product { get; private set; }
 
     private Feedback() { }
 
     private Feedback(
         string note,
         int star,
-        FeedbackType reviewType,
-        Guid businessId,
+        FeedbackType ByhandsType,
         string? imageUrl = null,
         string? audioUrl = null,
         string? videoUrl = null)
     {
         Note = note;
         Star = star;
-        FeedbackType = reviewType.ToString();
-        BusinessId = businessId;
+        FeedbackType = ByhandsType.ToString();
         ImageUrl = imageUrl;
         AudioUrl = audioUrl;
         VideoUrl = videoUrl;
@@ -42,8 +37,7 @@ public partial class Feedback : BaseEntity<Guid>
     public static Result<Feedback> Create(
         string note,
         int star,
-        FeedbackType reviewType,
-        Guid businessId,
+        FeedbackType ByhandsType,
         string? imageUrl = null,
         string? audioUrl = null,
         string? videoUrl = null)
@@ -55,8 +49,7 @@ public partial class Feedback : BaseEntity<Guid>
                 audioUrl: audioUrl,
                 videoUrl: videoUrl,
                 star: star,
-                reviewType: reviewType,
-                businessId: businessId));
+                ByhandsType: ByhandsType));
 
         if (result.HasError)
             return result.Error;

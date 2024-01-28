@@ -1,7 +1,7 @@
 using System.Reflection;
-using Review.Domain;
+using Byhands.Domain;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public static class PaginatedRepositoryHelper
 {

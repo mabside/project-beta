@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using Review.DataAccess;
-using Review.Domain.DTOs.Businesses;
-using Review.Domain.Entities.Businesses;
-using Review.Models.Bases;
+using Byhands.DataAccess;
+using Byhands.Domain.DTOs.Businesses;
+using Byhands.Domain.Entities.Businesses;
+using Byhands.Models.Bases;
 
-namespace Review.Application.Usecases.Businesses.GetCustomerBusinesses;
+namespace Byhands.Application.Usecases.Businesses.GetCustomerBusinesses;
 
 internal class GetCustomerBusinessQueryHandler : IRequestHandler<GetCustomerBusinessQuery, Result<IReadOnlyCollection<BusinessInformation>>>
 {

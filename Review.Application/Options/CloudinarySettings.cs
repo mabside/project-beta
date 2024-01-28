@@ -1,4 +1,4 @@
-﻿namespace Review.Application.Options;
+﻿namespace Byhands.Application.Options;
 
 public class CloudinarySettings
 {

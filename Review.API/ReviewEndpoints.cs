@@ -1,9 +1,9 @@
-﻿namespace Review.API
+﻿namespace Byhands.API
 {
-    public class ReviewEndpoints
+    public class ByhandsEndpoints
     {
         public const string BASE = "api/v1";
-        public const string ITEMPREFIX = $"{BASE}/items";
-        public const string GETITEMS = $"{ITEMPREFIX}/{{businessId}}/{{spaceId}}";
+        public const string ProductPREFIX = $"{BASE}/Products";
+        public const string GETProductS = $"{ProductPREFIX}/{{businessId}}/{{spaceId}}";
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Review.Domain.Entities.Links;
+using Byhands.Domain.Entities.Links;
 
-namespace Review.Infrastructure.Configurations;
+namespace Byhands.Infrastructure.Configurations;
 
 public class LinksConfiguration : IEntityTypeConfiguration<Link>
 {

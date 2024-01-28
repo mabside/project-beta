@@ -1,10 +1,10 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using Review.Domains;
-using Review.Entities.Errors;
-using Review.Models.Bases;
+using Byhands.Domains;
+using Byhands.Entities.Errors;
+using Byhands.Models.Bases;
 
-namespace Review.Entities.Validators;
+namespace Byhands.Entities.Validators;
 public sealed class OptionalRequiredValidator : ValueObject<string>
 {
     public OptionalRequiredValidator(string value) : base(value) { }

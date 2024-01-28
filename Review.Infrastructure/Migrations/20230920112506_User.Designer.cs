@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Review.Infrastructure.DataAccess;
+using Byhands.Infrastructure.DataAccess;
 
 #nullable disable
 
-namespace Review.Infrastructure.Migrations
+namespace Byhands.Infrastructure.Migrations
 {
-    [DbContext(typeof(ReviewUserDbContext))]
+    [DbContext(typeof(ByhandsUserDbContext))]
     [Migration("20230920112506_User")]
     partial class User
     {
@@ -131,7 +131,7 @@ namespace Review.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Review.Domain.Entities.Users.Role", b =>
+            modelBuilder.Entity("Byhands.Domain.Entities.Users.Role", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -164,7 +164,7 @@ namespace Review.Infrastructure.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Review.Domain.Entities.Users.User", b =>
+            modelBuilder.Entity("Byhands.Domain.Entities.Users.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -240,7 +240,7 @@ namespace Review.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Review.Domain.Entities.Users.Role", null)
+                    b.HasOne("Byhands.Domain.Entities.Users.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -249,7 +249,7 @@ namespace Review.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Review.Domain.Entities.Users.User", null)
+                    b.HasOne("Byhands.Domain.Entities.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -258,7 +258,7 @@ namespace Review.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Review.Domain.Entities.Users.User", null)
+                    b.HasOne("Byhands.Domain.Entities.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -267,13 +267,13 @@ namespace Review.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Review.Domain.Entities.Users.Role", null)
+                    b.HasOne("Byhands.Domain.Entities.Users.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Review.Domain.Entities.Users.User", null)
+                    b.HasOne("Byhands.Domain.Entities.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -282,7 +282,7 @@ namespace Review.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Review.Domain.Entities.Users.User", null)
+                    b.HasOne("Byhands.Domain.Entities.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

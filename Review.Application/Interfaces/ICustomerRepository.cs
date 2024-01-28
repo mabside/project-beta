@@ -1,7 +1,7 @@
-﻿using Review.DataAccess;
-using Review.Domain.Entities.Customers;
+﻿using Byhands.DataAccess;
+using Byhands.Domain.Entities.Customers;
 
-namespace Review.Application.Interfaces;
+namespace Byhands.Application.Interfaces;
 
 public interface ICustomerRepository
     : IWriteOnlyRepository<Customer, Guid>,

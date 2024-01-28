@@ -1,10 +1,10 @@
 ﻿using FastEndpoints;
 using MediatR;
-using Review.Application.Usecases.Businesses.GetCustomerBusinesses;
-using Review.Domain.DTOs.Businesses;
-using Review.Models.Bases;
+using Byhands.Application.Usecases.Businesses.GetCustomerBusinesses;
+using Byhands.Domain.DTOs.Businesses;
+using Byhands.Models.Bases;
 
-namespace Review.API.Endpoints.Businesses.GetCustomerBusiness;
+namespace Byhands.API.Endpoints.Businesses.GetCustomerBusiness;
 
 public class Endpoint : Endpoint<Request, Result<IReadOnlyCollection<BusinessInformation>>>
 {

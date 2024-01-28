@@ -1,4 +1,4 @@
-﻿namespace Review.Domains;
+﻿namespace Byhands.Domains;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public sealed class IgnoreMemberAttribute : Attribute

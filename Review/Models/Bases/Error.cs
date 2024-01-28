@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Review.Models.Bases;
+namespace Byhands.Models.Bases;
 
 public record Error
 {

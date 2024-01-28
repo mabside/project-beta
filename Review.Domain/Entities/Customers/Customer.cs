@@ -1,8 +1,8 @@
-﻿using Review.Entities.Validators;
-using Review.Extensions;
-using Review.Models.Bases;
+﻿using Byhands.Entities.Validators;
+using Byhands.Extensions;
+using Byhands.Models.Bases;
 
-namespace Review.Domain.Entities.Customers;
+namespace Byhands.Domain.Entities.Customers;
 
 public class Customer : BaseEntity<Guid>
 {

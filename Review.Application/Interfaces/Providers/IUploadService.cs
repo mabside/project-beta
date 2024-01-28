@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Review.Models.Bases;
+using Byhands.Models.Bases;
 
-namespace Review.Application.Interfaces.Providers;
+namespace Byhands.Application.Interfaces.Providers;
 
 public interface IUploadService
 {

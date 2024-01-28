@@ -1,7 +1,7 @@
-﻿using Review.Abstractions;
-using Review.Domain;
+﻿using Byhands.Abstractions;
+using Byhands.Domain;
 
-namespace Review.Domains;
+namespace Byhands.Domains;
 
 public class BusinessRuleValidationException : Exception
 {

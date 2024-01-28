@@ -1,6 +1,6 @@
-﻿using Review.Domain.DTOs.Feedbacks;
+﻿using Byhands.Domain.DTOs.Feedbacks;
 
-namespace Review.Domain.Entities.Feedbacks;
+namespace Byhands.Domain.Entities.Feedbacks;
 
 public partial class Feedback
 {
@@ -14,8 +14,7 @@ public partial class Feedback
             VideoUrl = feedback.VideoUrl,
             Star = feedback.Star,
             FeedbackType = feedback.FeedbackType,
-            BusinessId = feedback.BusinessId,
-            ItemId = feedback.ItemId,
+            ProductId = feedback.ProductId,
         };
     }
 }

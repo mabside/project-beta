@@ -1,6 +1,6 @@
-﻿using Review.Abstractions.Entities;
+﻿using Byhands.Abstractions.Entities;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public interface IWriteOnlyRepository<TEntity, TId> where TEntity : IEntity<TId> where TId : notnull
 {

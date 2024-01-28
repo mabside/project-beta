@@ -1,6 +1,6 @@
-﻿using Review.Domain.Entities.Businesses;
+﻿using Byhands.Domain.Entities.Businesses;
 
-namespace Review.Domain.DTOs.Businesses;
+namespace Byhands.Domain.DTOs.Businesses;
 
 public class BusinessInformation
 {

@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Review.Abstractions.Entities;
+using Byhands.Abstractions.Entities;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
-public abstract class ReviewDbContextBase : DbContext
+public abstract class ByhandsDbContextBase : DbContext
 {
     private const int Batch_Size = 1000;
 
-    public ReviewDbContextBase(DbContextOptions options) : base(options) { }
+    public ByhandsDbContextBase(DbContextOptions options) : base(options) { }
 
     public override int SaveChanges()
     {
@@ -70,20 +70,20 @@ public abstract class ReviewDbContextBase : DbContext
 
         DateTime now = DateTime.UtcNow;
 
-        foreach (var item in ChangeTracker.Entries().Where(e => e.State == EntityState.Added))
+        foreach (var Product in ChangeTracker.Entries().Where(e => e.State == EntityState.Added))
         {
-            if (item.Entity is IAuditableEntity entity)
+            if (Product.Entity is IAuditableEntity entity)
             {
                 entity.CreatedOn = now;
                 entity.CreatedBy = string.IsNullOrEmpty(entity.CreatedBy) ? string.Empty : entity.CreatedBy;
                 entity.ModifiedBy = string.IsNullOrEmpty(entity.ModifiedBy) ? string.Empty : entity.ModifiedBy;
             }
-            if (item.Entity is IAuditableEntity newEntity) newEntity.ModifiedOn = now;
+            if (Product.Entity is IAuditableEntity newEntity) newEntity.ModifiedOn = now;
         }
 
-        foreach (var item in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
+        foreach (var Product in ChangeTracker.Entries().Where(e => e.State == EntityState.Modified))
         {
-            if (item.Entity is IAuditableEntity entity)
+            if (Product.Entity is IAuditableEntity entity)
             {
                 entity.ModifiedOn = now;
                 entity.ModifiedBy = string.IsNullOrEmpty(entity.ModifiedBy) ? string.Empty : entity.ModifiedBy;

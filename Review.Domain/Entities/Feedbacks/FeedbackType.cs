@@ -1,4 +1,4 @@
-﻿namespace Review.Domain.Entities.Feedbacks;
+﻿namespace Byhands.Domain.Entities.Feedbacks;
 
 public enum FeedbackType
 {

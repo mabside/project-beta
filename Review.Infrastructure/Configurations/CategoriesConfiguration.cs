@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Review.Domain.Entities.Businesses;
+using Byhands.Domain.Entities.Businesses;
 
-namespace Review.Infrastructure.Configurations;
+namespace Byhands.Infrastructure.Configurations;
 
 class CategoriesConfiguration : IEntityTypeConfiguration<BusinessCategory>
 {

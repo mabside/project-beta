@@ -1,15 +1,15 @@
-﻿using Review.Application.Interfaces;
-using Review.DataAccess;
-using Review.Infrastructure.DataAccess.Repositories;
+﻿using Byhands.Application.Interfaces;
+using Byhands.DataAccess;
+using Byhands.Infrastructure.DataAccess.Repositories;
 
-namespace Review.Infrastructure.DataAccess;
+namespace Byhands.Infrastructure.DataAccess;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly ReviewDbContext _databaseContext;
+    private readonly ByhandsDbContext _databaseContext;
     private bool _disposed;
 
-    public UnitOfWork(ReviewDbContext databaseContext)
+    public UnitOfWork(ByhandsDbContext databaseContext)
     {
         _databaseContext = databaseContext;
     }
@@ -20,9 +20,9 @@ public class UnitOfWork : IUnitOfWork
         GC.SuppressFinalize(this);
     }
 
-    public IItemRepository ItemRepository()
+    public IProductRepository ProductRepository()
     {
-        return new ItemRepository(_databaseContext);
+        return new ProductRepository(_databaseContext);
     }
 
     public IBusinessRepository BusinessRepository()
@@ -40,14 +40,9 @@ public class UnitOfWork : IUnitOfWork
         return new BusinessCategoryRepository(_databaseContext);
     }
 
-    public ISpaceRepository SpaceRepository()
+    public IProductCategoryRepository productCategoryRepository()
     {
-        return new SpaceRepository(_databaseContext);
-    }
-
-    public IItemCategoryRepository ItemCategoryRepository()
-    {
-        return new ItemCategoryRepository(_databaseContext);
+        return new productCategoryRepository(_databaseContext);
     }
 
     public Task<int> CommitAsync(CancellationToken cancellationToken)

@@ -1,4 +1,4 @@
-﻿namespace Review.Domain.Entities.Links;
+﻿namespace Byhands.Domain.Entities.Links;
 
 public enum LinkType
 {

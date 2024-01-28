@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Review.Models.Bases;
+namespace Byhands.Models.Bases;
 
 public record Result<T>
 {

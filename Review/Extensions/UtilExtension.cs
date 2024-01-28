@@ -2,9 +2,9 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using Npgsql;
-using Review.Entities.Validators;
+using Byhands.Entities.Validators;
 
-namespace Review.Extensions;
+namespace Byhands.Extensions;
 
 public static partial class UtilExtension
 {

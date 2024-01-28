@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Review.Entities.QueryObjects;
+using Byhands.Entities.QueryObjects;
 
-namespace Review.Extensions;
+namespace Byhands.Extensions;
 
 public static class PaginationExtension
 {

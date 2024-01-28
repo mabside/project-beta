@@ -1,4 +1,4 @@
-﻿namespace Review.Domain.DTOs.Businesses;
+﻿namespace Byhands.Domain.DTOs.Businesses;
 
 public class CategoryInformation
 {

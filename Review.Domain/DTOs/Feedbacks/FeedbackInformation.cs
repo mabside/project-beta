@@ -1,4 +1,4 @@
-﻿namespace Review.Domain.DTOs.Feedbacks;
+﻿namespace Byhands.Domain.DTOs.Feedbacks;
 
 public class FeedbackInformation
 {
@@ -10,5 +10,5 @@ public class FeedbackInformation
     public string FeedbackType { get; set; } = string.Empty;
 
     public Guid BusinessId { get; set; }
-    public Guid ItemId { get; set; }
+    public Guid ProductId { get; set; }
 }

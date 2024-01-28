@@ -1,7 +1,7 @@
-﻿using Review.DataAccess;
-using Review.Domain.Entities.Businesses;
+﻿using Byhands.DataAccess;
+using Byhands.Domain.Entities.Businesses;
 
-namespace Review.Application.Interfaces;
+namespace Byhands.Application.Interfaces;
 
 public interface IBusinessRepository
     : IWriteOnlyRepository<Business, Guid>,

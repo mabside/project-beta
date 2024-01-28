@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using Review.Entities.QueryObjects;
+using Byhands.Entities.QueryObjects;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public interface IPaginatedRepository<TEntity, TQueryFilter>
     where TEntity : class

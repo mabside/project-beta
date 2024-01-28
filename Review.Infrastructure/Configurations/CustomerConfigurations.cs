@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Review.Domain.Entities.Customers;
+using Byhands.Domain.Entities.Customers;
 
-namespace Review.Infrastructure.Configurations;
+namespace Byhands.Infrastructure.Configurations;
 
 internal class CustomerConfigurations : IEntityTypeConfiguration<Customer>
 {

@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Review.DataAccess;
+namespace Byhands.DataAccess;
 
 public static class QueryableExtensions
 {
@@ -18,7 +18,7 @@ public static class QueryableExtensions
 
     private static IOrderedQueryable<T> OrderByColumnUsing<T>(this IQueryable<T> source, string columnPath, string method)
     {
-        var parameter = Expression.Parameter(typeof(T), "item");
+        var parameter = Expression.Parameter(typeof(T), "Product");
         var member = columnPath.Split('.')
             .Aggregate((Expression)parameter, Expression.PropertyOrField);
         var keySelector = Expression.Lambda(member, parameter);

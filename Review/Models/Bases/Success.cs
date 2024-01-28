@@ -1,4 +1,4 @@
-﻿namespace Review.Models.Bases;
+﻿namespace Byhands.Models.Bases;
 
 public readonly struct Success
 {

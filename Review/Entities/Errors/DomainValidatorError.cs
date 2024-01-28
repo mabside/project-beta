@@ -1,6 +1,6 @@
-﻿using Review.Models.Bases;
+﻿using Byhands.Models.Bases;
 
-namespace Review.Entities.Errors;
+namespace Byhands.Entities.Errors;
 
 public record DomainValidationError(string Message)
         : Error(Message, "88", false);

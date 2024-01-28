@@ -1,8 +1,8 @@
-﻿using Review.Entities.Validators;
-using Review.Extensions;
-using Review.Models.Bases;
+﻿using Byhands.Entities.Validators;
+using Byhands.Extensions;
+using Byhands.Models.Bases;
 
-namespace Review.Domain.Entities.Links;
+namespace Byhands.Domain.Entities.Links;
 
 public class Link : BaseEntity<Guid>
 {

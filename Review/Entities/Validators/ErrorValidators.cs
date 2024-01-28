@@ -1,8 +1,8 @@
-﻿using Review.Entities.Errors;
-using Review.Extensions;
-using Review.Models.Bases;
+﻿using Byhands.Entities.Errors;
+using Byhands.Extensions;
+using Byhands.Models.Bases;
 
-namespace Review.Entities.Validators;
+namespace Byhands.Entities.Validators;
 
 public static class ErrorValidators
 {

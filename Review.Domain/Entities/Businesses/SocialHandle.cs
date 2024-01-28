@@ -1,8 +1,8 @@
-﻿using Review.Entities.Validators;
-using Review.Extensions;
-using Review.Models.Bases;
+﻿using Byhands.Entities.Validators;
+using Byhands.Extensions;
+using Byhands.Models.Bases;
 
-namespace Review.Domain.Entities.Businesses;
+namespace Byhands.Domain.Entities.Businesses;
 
 public class SocialHandle
 {

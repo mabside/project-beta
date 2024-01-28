@@ -1,6 +1,6 @@
-﻿using Review.Models.Bases;
+﻿using Byhands.Models.Bases;
 
-namespace Review.Extensions;
+namespace Byhands.Extensions;
 
 public static class ResultExtension
 {

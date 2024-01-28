@@ -1,6 +1,6 @@
 ﻿using TimeZoneConverter;
 
-namespace Review.Utilities;
+namespace Byhands.Utilities;
 
 public static class Clock
 {

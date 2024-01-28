@@ -1,9 +1,9 @@
 ﻿using FastEndpoints;
-using Review.Application.Usecases.Businesses.CeateBusinesses;
-using Review.Domain.DTOs.Businesses;
-using Review.Models.Bases;
+using Byhands.Application.Usecases.Businesses.CeateBusinesses;
+using Byhands.Domain.DTOs.Businesses;
+using Byhands.Models.Bases;
 
-namespace Review.API.Endpoints.Businesses.CreateBusinesses;
+namespace Byhands.API.Endpoints.Businesses.CreateBusinesses;
 
 internal sealed class Mapper : Mapper<Request, Result<NewBusiness>, object>
 {

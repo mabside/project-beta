@@ -1,9 +1,9 @@
 using System.Runtime.CompilerServices;
-using Review.Domains;
-using Review.Entities.Errors;
-using Review.Models.Bases;
+using Byhands.Domains;
+using Byhands.Entities.Errors;
+using Byhands.Models.Bases;
 
-namespace Review.Entities.Validators;
+namespace Byhands.Entities.Validators;
 
 public sealed class NotNull : ValueObject<object>
 {

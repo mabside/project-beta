@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Review.Domain.Entities.Feedbacks;
+using Byhands.Domain.Entities.Feedbacks;
 
-namespace Review.Infrastructure.Configurations;
+namespace Byhands.Infrastructure.Configurations;
 
 public class FeedbacksConfiguration : IEntityTypeConfiguration<Feedback>
 {

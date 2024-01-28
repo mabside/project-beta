@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-using Review.Domains;
-using Review.Models.Bases;
+using Byhands.Domains;
+using Byhands.Models.Bases;
 
-namespace Review.Entities.Validators;
+namespace Byhands.Entities.Validators;
 
 public sealed class AlphaNumericValidator : ValueObject<string>
 {

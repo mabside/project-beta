@@ -1,6 +1,6 @@
-﻿using Review.Domain;
+﻿using Byhands.Domain;
 
-namespace Review.Abstractions;
+namespace Byhands.Abstractions;
 
 public interface IBusinessRule
 {

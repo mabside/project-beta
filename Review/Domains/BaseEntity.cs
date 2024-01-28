@@ -1,9 +1,9 @@
-﻿using Review.Abstractions;
-using Review.Abstractions.Entities;
-using Review.Domains;
-using Review.Utilities;
+﻿using Byhands.Abstractions;
+using Byhands.Abstractions.Entities;
+using Byhands.Domains;
+using Byhands.Utilities;
 
-namespace Review.Domain;
+namespace Byhands.Domain;
 
 public abstract class BaseEntity<TId> : IEntity<TId>, IAuditableEntity
 {

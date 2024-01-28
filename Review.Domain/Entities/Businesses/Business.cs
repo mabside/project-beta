@@ -1,13 +1,13 @@
 ﻿using System.Text.Json.Serialization;
-using Review.Domain.Entities.Customers;
-using Review.Domain.Entities.Feedbacks;
-using Review.Domain.Entities.Spaces;
-using Review.Entities.Validators;
-using Review.Extensions;
-using Review.Models.Bases;
-using Review.Utilities;
+using Byhands.Domain.Entities.Customers;
+using Byhands.Domain.Entities.Feedbacks;
+using Byhands.Domain.Entities.Products;
+using Byhands.Entities.Validators;
+using Byhands.Extensions;
+using Byhands.Models.Bases;
+using Byhands.Utilities;
 
-namespace Review.Domain.Entities.Businesses;
+namespace Byhands.Domain.Entities.Businesses;
 
 public partial class Business : BaseEntity<Guid>
 {
@@ -28,10 +28,10 @@ public partial class Business : BaseEntity<Guid>
     public virtual BusinessCategory Category { get; private set; }
     public virtual Customer Customer { get; private set; }
 
-    public virtual IEnumerable<Feedback> Reviews { get; set; }
+    public virtual IEnumerable<Product> Products{ get; set; }
+     = new List<Product>();
+    public virtual IEnumerable<Feedback> Feedbacks { get; set; }
      = new List<Feedback>();
-    public virtual IEnumerable<Space> Spaces { get; set; }
-     = new List<Space>();
 
     [JsonIgnore]
     public string FullLocation

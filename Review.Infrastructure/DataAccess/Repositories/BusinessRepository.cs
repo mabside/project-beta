@@ -1,21 +1,21 @@
-﻿using Review.Application.Interfaces;
-using Review.DataAccess;
-using Review.Domain.Entities.Businesses;
+﻿using Byhands.Application.Interfaces;
+using Byhands.DataAccess;
+using Byhands.Domain.Entities.Businesses;
 
-namespace Review.Infrastructure.DataAccess.Repositories;
+namespace Byhands.Infrastructure.DataAccess.Repositories;
 
 internal sealed class BusinessRepository
-    : EFContextRepositoryBase<ReviewDbContext, Business, Guid>, IBusinessRepository
+    : EFContextRepositoryBase<ByhandsDbContext, Business, Guid>, IBusinessRepository
 {
-    public BusinessRepository(ReviewDbContext context) : base(context)
+    public BusinessRepository(ByhandsDbContext context) : base(context)
     {
     }
 }
 
 internal sealed class BusinessCategoryRepository
-    : EFContextRepositoryBase<ReviewDbContext, BusinessCategory, Guid>, IBusinessCategoryRepository
+    : EFContextRepositoryBase<ByhandsDbContext, BusinessCategory, Guid>, IBusinessCategoryRepository
 {
-    public BusinessCategoryRepository(ReviewDbContext context) : base(context)
+    public BusinessCategoryRepository(ByhandsDbContext context) : base(context)
     {
     }
 }

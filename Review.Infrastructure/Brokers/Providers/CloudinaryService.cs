@@ -2,13 +2,13 @@
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Review.Application.Interfaces.Providers;
-using Review.Application.Options;
-using Review.Models.Bases;
-using Review.Utilities;
-using Error = Review.Models.Bases.Error;
+using Byhands.Application.Interfaces.Providers;
+using Byhands.Application.Options;
+using Byhands.Models.Bases;
+using Byhands.Utilities;
+using Error = Byhands.Models.Bases.Error;
 
-namespace Review.Infrastructure.Brokers.Providers;
+namespace Byhands.Infrastructure.Brokers.Providers;
 
 public class CloudinaryService : IUploadService
 {
@@ -45,6 +45,6 @@ public class CloudinaryService : IUploadService
         catch (Exception ex)
         {
             return new Error(ex.Message, "Upload.Fail", false);
-        }        
+        }
     }
 }
