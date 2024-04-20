@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.Infrastructure", "Review.Infrastructure\Byhands.Infrastructure.csproj", "{0D44C94E-7C0E-4516-8BDC-EDC29CE2C12A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.Infrastructure", "Byhands.Infrastructure\Byhands.Infrastructure.csproj", "{0D44C94E-7C0E-4516-8BDC-EDC29CE2C12A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.Domain", "Review.Domain\Byhands.Domain.csproj", "{A74E086F-0DB1-4600-AA6C-4B592340617C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.Domain", "Byhands.Domain\Byhands.Domain.csproj", "{A74E086F-0DB1-4600-AA6C-4B592340617C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.API", "Review.API\Byhands.API.csproj", "{59F5179D-B11D-4CCA-897B-3A2BEC30F04C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.API", "Byhands.API\Byhands.API.csproj", "{59F5179D-B11D-4CCA-897B-3A2BEC30F04C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Review.Test", "Review.Test\Review.Test.csproj", "{8569D1D5-6556-4FE8-B546-2EB42202C453}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands", "Byhands\Byhands.csproj", "{718F9F69-F171-494A-87B4-252F4E4B284E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands", "Review\Byhands.csproj", "{718F9F69-F171-494A-87B4-252F4E4B284E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.Application", "Review.Application\Byhands.Application.csproj", "{3FACDC48-D97D-4033-A308-DB8770F7E363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Byhands.Application", "Byhands.Application\Byhands.Application.csproj", "{3FACDC48-D97D-4033-A308-DB8770F7E363}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{59F5179D-B11D-4CCA-897B-3A2BEC30F04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59F5179D-B11D-4CCA-897B-3A2BEC30F04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59F5179D-B11D-4CCA-897B-3A2BEC30F04C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8569D1D5-6556-4FE8-B546-2EB42202C453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8569D1D5-6556-4FE8-B546-2EB42202C453}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8569D1D5-6556-4FE8-B546-2EB42202C453}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8569D1D5-6556-4FE8-B546-2EB42202C453}.Release|Any CPU.Build.0 = Release|Any CPU
 		{718F9F69-F171-494A-87B4-252F4E4B284E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{718F9F69-F171-494A-87B4-252F4E4B284E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{718F9F69-F171-494A-87B4-252F4E4B284E}.Release|Any CPU.ActiveCfg = Release|Any CPU
