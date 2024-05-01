@@ -3,6 +3,7 @@ using Byhands.Application.Constants;
 using Byhands.Application.Interfaces;
 using Byhands.Application.Interfaces.Users;
 using Byhands.Application.Options;
+using Byhands.DataAccess;
 using Byhands.Domain.Entities.Users;
 using Byhands.Infrastructure.Contracts.Users;
 using Byhands.Infrastructure.DataAccess;
@@ -29,6 +30,7 @@ namespace Byhands.API
 
             builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddDbContext<ByhandsDbContext>(options =>
             {

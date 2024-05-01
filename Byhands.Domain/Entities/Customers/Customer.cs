@@ -10,8 +10,8 @@ public class Customer : BaseEntity<Guid>
     public string Lastname { get; set; }
     public string Email { get; private set; }
     public string PhoneNumber { get; private set; } = null!;
-    public string BVN { get; set; }
-    public string NIN { get; set; }
+    public string? BVN { get; set; }
+    public string? NIN { get; set; }
 
     private Customer() { }
 

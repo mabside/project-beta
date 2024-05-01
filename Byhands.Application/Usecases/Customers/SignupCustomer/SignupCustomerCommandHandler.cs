@@ -1,5 +1,6 @@
 ﻿using Byhands.Application.Interfaces;
 using Byhands.Application.Interfaces.Users;
+using Byhands.DataAccess;
 using Byhands.Domain.DTOs.Customers;
 using Byhands.Domain.Entities.Customers;
 using Byhands.Models.Bases;
@@ -11,13 +12,16 @@ public class SignupCustomerCommandHandler : IRequestHandler<SignupCustomerComman
 {
     private readonly ICustomerRepository customerRepository;
     private readonly IUserService userService;
+    private readonly IUnitOfWork unitOfWork;
 
     public SignupCustomerCommandHandler(
         ICustomerRepository customerRepository,
-        IUserService userService)
+        IUserService userService,
+        IUnitOfWork unitOfWork)
     {
         this.customerRepository = customerRepository;
         this.userService = userService;
+        this.unitOfWork = unitOfWork;
     }
 
     public async Task<Result<NewCustomer>> Handle(SignupCustomerCommand command, CancellationToken cancellationToken)
@@ -56,6 +60,7 @@ public class SignupCustomerCommandHandler : IRequestHandler<SignupCustomerComman
         if (createIdentityResult.HasError)
             return createIdentityResult.Error;
 
+        await unitOfWork.CommitAsync(cancellationToken);
         return new NewCustomer(newCustomer.Id);
     }
 }
