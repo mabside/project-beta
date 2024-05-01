@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Byhands.Infrastructure.Migrations.ByhandsDb
 {
     [DbContext(typeof(ByhandsDbContext))]
-    [Migration("20240127235127_InitialMigration")]
+    [Migration("20240501004828_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -140,6 +140,10 @@ namespace Byhands.Infrastructure.Migrations.ByhandsDb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("BVN")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("text");
@@ -152,11 +156,23 @@ namespace Byhands.Infrastructure.Migrations.ByhandsDb
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NIN")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()

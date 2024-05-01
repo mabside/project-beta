@@ -1,4 +1,6 @@
-﻿using Byhands.Domain.Entities.Businesses;
+﻿using System;
+using System.Collections.Generic;
+using Byhands.Domain.Entities.Businesses;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -44,8 +46,12 @@ namespace Byhands.Infrastructure.Migrations.ByhandsDb
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Firstname = table.Column<string>(type: "text", nullable: false),
+                    Lastname = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    BVN = table.Column<string>(type: "text", nullable: false),
+                    NIN = table.Column<string>(type: "text", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedBy = table.Column<string>(type: "text", nullable: true),

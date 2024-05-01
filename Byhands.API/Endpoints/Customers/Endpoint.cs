@@ -17,7 +17,6 @@ public class Endpoint : Endpoint<Request, Result<NewCustomer>>
     public override void Configure()
     {
         Post("api/Customers/signup");
-        AllowFileUploads();
         AllowAnonymous();
     }
 

@@ -20,7 +20,7 @@ internal sealed class SignupCustomerCommandHandler : IRequestHandler<SignupCusto
     {
         var isEmailValid = command.UserName.IsEmail();
 
-        if (!isEmailValid) return new BadRequestError("Invalid request");
+        if (!isEmailValid) return new BadRequestError("Invalid email");
 
         var userResult = User.Signup(
             username: command.UserName,
