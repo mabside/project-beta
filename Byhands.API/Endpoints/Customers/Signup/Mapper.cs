@@ -3,7 +3,7 @@ using Byhands.Domain.DTOs.Customers;
 using Byhands.Models.Bases;
 using FastEndpoints;
 
-namespace Byhands.API.Endpoints.Customers;
+namespace Byhands.API.Endpoints.Customers.Signup;
 
 internal sealed class Mapper : Mapper<Request, Result<NewCustomer>, object>
 {

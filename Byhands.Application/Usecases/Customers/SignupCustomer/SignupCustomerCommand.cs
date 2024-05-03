@@ -1,4 +1,5 @@
-﻿using Byhands.Domain.DTOs.Customers;
+﻿using Byhands.CQRS;
+using Byhands.Domain.DTOs.Customers;
 using Byhands.Models.Bases;
 using MediatR;
 
@@ -11,4 +12,4 @@ public record SignupCustomerCommand(
     string email,
     string phoneNumber,
     string password
-) : IRequest<Result<NewCustomer>>;
+) : CommandBase<NewCustomer>(CommandId);

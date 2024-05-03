@@ -1,4 +1,4 @@
-﻿namespace Byhands.API.Endpoints.Customers;
+﻿namespace Byhands.API.Endpoints.Customers.Signup;
 
 public class Request
 {

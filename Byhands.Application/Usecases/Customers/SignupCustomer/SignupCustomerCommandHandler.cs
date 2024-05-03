@@ -1,5 +1,6 @@
 ﻿using Byhands.Application.Interfaces;
 using Byhands.Application.Interfaces.Users;
+using Byhands.CQRS.Interfaces;
 using Byhands.DataAccess;
 using Byhands.Domain.DTOs.Customers;
 using Byhands.Domain.Entities.Customers;
@@ -8,7 +9,7 @@ using MediatR;
 
 namespace Byhands.Application.Usecases.Customers.SignupCustomer;
 
-public class SignupCustomerCommandHandler : IRequestHandler<SignupCustomerCommand, Result<NewCustomer>>
+public class SignupCustomerCommandHandler : ICommandHandler<SignupCustomerCommand, NewCustomer>
 {
     private readonly ICustomerRepository customerRepository;
     private readonly IUserService userService;

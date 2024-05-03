@@ -3,7 +3,7 @@ using Byhands.Models.Bases;
 using FastEndpoints;
 using MediatR;
 
-namespace Byhands.API.Endpoints.Customers;
+namespace Byhands.API.Endpoints.Customers.Signup;
 
 public class Endpoint : Endpoint<Request, Result<NewCustomer>>
 {
@@ -23,7 +23,7 @@ public class Endpoint : Endpoint<Request, Result<NewCustomer>>
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
         var command = Mapper.AsCommand(req);
-        var result = await this.mediator.Send(command, ct);
+        var result = await mediator.Send(command, ct);
 
         await SendResultAsync(result, ct);
     }

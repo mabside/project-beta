@@ -1,22 +1,23 @@
 ﻿using Byhands.Application.Extensions;
+using Byhands.CQRS.Interfaces;
 using Byhands.Domain.Entities.Users;
 using Byhands.Entities.Errors;
 using Byhands.Models.Bases;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace Byhands.Application.Usecases.Users.SignupCustomer;
+namespace Byhands.Application.Usecases.Users.CreateUserIdentity;
 
-internal sealed class SignupCustomerCommandHandler : IRequestHandler<SignupCustomerCommand, Result>
+internal sealed class CreateUserIdentityCommandHandler : ICommandHandler<CreateUserIdentityCommand, CreateUserIdentityCommandResponse>
 {
     private readonly UserManager<User> userManager;
 
-    public SignupCustomerCommandHandler(UserManager<User> userManager)
+    public CreateUserIdentityCommandHandler(UserManager<User> userManager)
     {
         this.userManager = userManager;
     }
 
-    public async Task<Result> Handle(SignupCustomerCommand command, CancellationToken cancellationToken)
+    public async Task<Result<CreateUserIdentityCommandResponse>> Handle(CreateUserIdentityCommand command, CancellationToken cancellationToken)
     {
         var isEmailValid = command.UserName.IsEmail();
 
@@ -47,6 +48,6 @@ internal sealed class SignupCustomerCommandHandler : IRequestHandler<SignupCusto
         if (!signupResult.Succeeded)
             return new Error(string.Join(", ", signupResult.Errors.Select(e => e.Description)), "", false);
 
-        return new Success();
+        return new CreateUserIdentityCommandResponse(signupResult.Succeeded);
     }
 }

@@ -17,7 +17,7 @@ internal sealed class Endpoint : Endpoint<Request, Result<PaginatedResult<Produc
 
     public override void Configure()
     {
-        Get("api/Products/{businessId}/{spaceId}");
+        Put("api/Products/{businessId}/{spaceId}");
         AllowAnonymous();
     }
 
@@ -40,38 +40,5 @@ internal sealed class Endpoint : Endpoint<Request, Result<PaginatedResult<Produc
         {
             await SendAsync(result, cancellation: c);
         }
-    }
-
-    public int[] TwoSum(int[] nums, int target)
-    {
-        var result = new int[2];
-        var arrayLength = nums.Length;
-        var idx1 = 0;
-        var idx2 = arrayLength - 1;
-
-        bool isTargetFound = false;
-
-        while (!isTargetFound && idx1 < idx2)
-        {
-            var total = nums[idx1] + nums[idx2];
-
-            if (total > target)
-            {
-                idx2--;
-            }
-            else if (total < target)
-            {
-                idx1++;
-            }
-            else if (total == target)
-            {
-                result.Append(idx1);
-                result.Append(idx2);
-
-                isTargetFound = true;
-            }
-        }
-
-        return result;
     }
 }

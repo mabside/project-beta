@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Byhands.Domain.Entities.Businesses;
+﻿using Byhands.Domain.Entities.Businesses;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
