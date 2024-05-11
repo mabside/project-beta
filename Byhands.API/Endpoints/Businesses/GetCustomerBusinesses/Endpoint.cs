@@ -18,7 +18,7 @@ public class Endpoint : Endpoint<Request, Result<IReadOnlyCollection<BusinessInf
     public override void Configure()
     {
         Get("api/businesses/customer/{customerId}");
-        AllowAnonymous();
+        //AllowAnonymous();
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)

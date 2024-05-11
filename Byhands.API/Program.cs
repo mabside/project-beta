@@ -13,6 +13,7 @@ using Byhands.Infrastructure.DataAccess;
 using Byhands.Infrastructure.DataAccess.Repositories;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using FastEndpoints.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,8 +32,10 @@ namespace Byhands.API
             // Add services to the container.
 
             builder.Services
-                .AddFastEndpoints()
-                .AddAuthorization();
+               .AddAuthenticationJwtBearer(s => s.SigningKey = "CraftedByHandForioSecretautentication")
+               .AddAuthorization()
+               .AddFastEndpoints()
+               .AddSwaggerDocument();
 
             var jwtOptionsSection = configuration.GetSection("JWTOptions");
 
@@ -52,30 +55,28 @@ namespace Byhands.API
             });
 
             builder.Services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<ByhandsUserDbContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ByhandsUserDbContext>();
 
             var secretKey = configuration["JWT:Key"] ?? throw new ArgumentNullException();
 
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-                .AddJwtBearer(options =>
-                {
-                    options.SaveToken = true;
-                    options.RequireHttpsMetadata = true;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidAudience = configuration["JWT:ValidAudience"],
-                        ValidIssuer = configuration["JWT:ValidIssuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
-                    };
-                });
+            //builder.Services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.SaveToken = true;
+            //        options.RequireHttpsMetadata = true;
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuer = true,
+            //            ValidateAudience = true,
+            //            ValidIssuer = configuration["JWT:ValidIssuer"],
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+            //        };
+            //    });
 
             builder.Services.AddSwaggerGen(c =>
             {
@@ -114,7 +115,9 @@ namespace Byhands.API
 
             var app = builder.Build();
 
-            app.UseFastEndpoints()
+            app.UseAuthentication()
+                .UseAuthorization()
+                .UseFastEndpoints()
                 .UseSwaggerGen();
 
             app.Run();

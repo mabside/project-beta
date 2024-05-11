@@ -1,12 +1,11 @@
-﻿using Byhands.Domain.DTOs.Products;
-using Byhands.Entities.QueryObjects;
+﻿using Byhands.Application.Usecases.Customers.SigninCustomer;
 using Byhands.Models.Bases;
 using FastEndpoints;
 using MediatR;
 
-namespace Byhands.API.Endpoints.Products.GetProducts;
+namespace Byhands.API.Endpoints.Customers.Signin;
 
-internal sealed class Endpoint : Endpoint<Request, Result<PaginatedResult<ProductInformation>>, Mapper>
+public class Endpoint : Endpoint<Request, Result<SigninCustomerCommandResponse>>
 {
     private readonly IMediator mediator;
 
@@ -17,18 +16,19 @@ internal sealed class Endpoint : Endpoint<Request, Result<PaginatedResult<Produc
 
     public override void Configure()
     {
-        Put("api/Products/{businessId}/{spaceId}");
+        Post("api/Customers/signin");
+        AllowAnonymous();
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        var query = Mapper.AsQuery(req);
-        var result = await this.mediator.Send(query, ct);
+        var command = Mapper.AsCommand(req);
+        var result = await mediator.Send(command, ct);
 
         await SendResultAsync(result, ct);
     }
 
-    private async Task SendResultAsync(Result<PaginatedResult<ProductInformation>> result, CancellationToken c)
+    private async Task SendResultAsync(Result<SigninCustomerCommandResponse> result, CancellationToken c)
     {
         if (result.HasError)
         {
