@@ -1,67 +1,43 @@
-﻿using Byhands.Application.Interfaces;
-using Byhands.Application.Interfaces.Users;
+﻿using Byhands.Contract;
+using Byhands.Contract.Interfaces.Auth;
 using Byhands.CQRS.Interfaces;
-using Byhands.DataAccess;
 using Byhands.Domain.DTOs.Customers;
-using Byhands.Domain.Entities.Customers;
 using Byhands.Models.Bases;
-using MediatR;
+using DotNetCore.CAP;
 
 namespace Byhands.Application.Usecases.Customers.SignupCustomer;
 
-public class SignupCustomerCommandHandler : ICommandHandler<SignupCustomerCommand, NewCustomer>
+public class SignupCustomerCommandHandler : ICommandHandler<SignupCustomerCommand, NewCustomerResponse>
 {
-    private readonly ICustomerRepository customerRepository;
-    private readonly IUserService userService;
+    private readonly ICapPublisher capPublisher;
+    private readonly IAuthService authService;
     private readonly IUnitOfWork unitOfWork;
 
     public SignupCustomerCommandHandler(
-        ICustomerRepository customerRepository,
-        IUserService userService,
+        ICapPublisher capPublisher,
+        IAuthService authService,
         IUnitOfWork unitOfWork)
     {
-        this.customerRepository = customerRepository;
-        this.userService = userService;
+        this.capPublisher = capPublisher;
+        this.authService = authService;
         this.unitOfWork = unitOfWork;
     }
 
-    public async Task<Result<NewCustomer>> Handle(SignupCustomerCommand command, CancellationToken cancellationToken)
+    public async Task<Result<NewCustomerResponse>> Handle(SignupCustomerCommand command, CancellationToken cancellationToken)
     {
-        var result = Customer.Create(
-            firstname: command.firstname,
-            lastname: command.lastname,
-            email: command.email,
-            phoneNumber: command.phoneNumber);
+        using var transaction = unitOfWork.Begin(capPublisher);
 
-        if (result.HasError)
-            return result.Error;
+        var newCustomerResult = await authService.CreateNewCustomerAsync(command, cancellationToken);
 
-        var newCustomer = result.Value;
+        if (newCustomerResult.HasError)
+            return newCustomerResult.Error;
 
-        var existingCustomer = await customerRepository.ExistsAsync(
-            c => c.Email == command.email);
+        var newCustomerId = newCustomerResult.Value;
 
-        if (!existingCustomer)
-        {
-            await customerRepository.AddAsync(newCustomer);
-        }
-        else
-        {
-            newCustomer = await customerRepository.FirstOrDefaultAsync(
-                c => c.Email == command.email);
-        }
+        var commitResult = await unitOfWork.CommitAsync(transaction, cancellationToken);
+        if (commitResult.HasError)
+            return commitResult.Error;
 
-        var createIdentityResult = await userService.CreateIdentityAsync(
-            customerId: newCustomer!.Id,
-            userName: newCustomer.Email,
-            password: command.password,
-            commandId: command.CommandId,
-            cancellationToken: cancellationToken);
-
-        if (createIdentityResult.HasError)
-            return createIdentityResult.Error;
-
-        await unitOfWork.CommitAsync(cancellationToken);
-        return new NewCustomer(newCustomer.Id);
+        return new NewCustomerResponse(newCustomerId);
     }
 }

@@ -1,5 +1,5 @@
-﻿using Byhands.Application.Interfaces.Providers;
-using Byhands.Application.Options;
+﻿using Byhands.Abstractions.Providers;
+using Byhands.Infrastructure.Options;
 using Byhands.Models.Bases;
 using Byhands.Utilities;
 using CloudinaryDotNet;

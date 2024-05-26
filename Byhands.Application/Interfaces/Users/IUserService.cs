@@ -2,7 +2,7 @@
 using Byhands.Application.Usecases.Users.CreateUserIdentity;
 using Byhands.Models.Bases;
 
-namespace Byhands.Application.Interfaces.Users;
+namespace Byhands.Contract.Interfaces.Users;
 
 public interface IUserService
 {
@@ -13,7 +13,7 @@ public interface IUserService
         Guid commandId,
         CancellationToken cancellationToken);
 
-    Task<Result<SigninCustomerCommandResponse>> SignInAsync(
+    Task<Result<SigninCustomerResponse>> SignInAsync(
         string username,
         string password,
         Guid CommandId,

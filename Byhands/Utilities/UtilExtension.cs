@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using Byhands.Entities.Errors;
 using Byhands.Entities.Validators;
 using Npgsql;
 
@@ -114,42 +115,42 @@ public static partial class UtilExtension
         return string.Join(' ', new string?[] { FirstName, LastName }).Trim();
     }
 
-    //public static ExceptionError ToFriendlyErrorMessage(this ExceptionError error)
-    //{
-    //    var errorMessage = error.Message;
-    //    var details = errorMessage
-    //        .Split(Environment.NewLine)
-    //        .LastOrDefault();
+    public static ExceptionError ToFriendlyErrorMessage(this ExceptionError error)
+    {
+        var errorMessage = error.Message;
+        var details = errorMessage
+            .Split(Environment.NewLine)
+            .LastOrDefault();
 
-    //    if (string.IsNullOrEmpty(details))
-    //        return error;
+        if (string.IsNullOrEmpty(details))
+            return error;
 
-    //    string message = string.Empty;
-    //    //Sample => DETAIL: Key("Code") = (AZBBXNJ)already exists.
-    //    if (details.Contains("DETAIL:"))
-    //    {
-    //        //Sample => Key("Code") = (AZBBXNJ)already exists.
-    //        var content = details.Split(':').LastOrDefault();
-    //        if (string.IsNullOrEmpty(content))
-    //            return error;
+        string message = string.Empty;
+        //Sample => DETAIL: Key("Code") = (AZBBXNJ)already exists.
+        if (details.Contains("DETAIL:"))
+        {
+            //Sample => Key("Code") = (AZBBXNJ)already exists.
+            var content = details.Split(':').LastOrDefault();
+            if (string.IsNullOrEmpty(content))
+                return error;
 
-    //        //Sample => Code: 'AZBBXNJ' already exists.;
-    //        //NOTE: the replace order is important
-    //         message = content
-    //            .Replace("=", " ")
-    //            .Replace("Key", string.Empty)
-    //            .Replace("\")", string.Empty)
-    //            .Replace("(\"", string.Empty)
-    //            .Replace("\"", string.Empty)
-    //            .Replace("(", "'")
-    //            .Replace(")", "'")
-    //            .Trim();
+            //Sample => Code: 'AZBBXNJ' already exists.;
+            //NOTE: the replace order is important
+            message = content
+               .Replace("=", " ")
+               .Replace("Key", string.Empty)
+               .Replace("\")", string.Empty)
+               .Replace("(\"", string.Empty)
+               .Replace("\"", string.Empty)
+               .Replace("(", "'")
+               .Replace(")", "'")
+               .Trim();
 
-    //        if(string.IsNullOrEmpty(message))
-    //            return error;
-    //    }
-    //    return new ExceptionError(message, error.Exception);
-    //}
+            if (string.IsNullOrEmpty(message))
+                return error;
+        }
+        return new ExceptionError(message, error.Message, false);
+    }
 
     public static (string Key, string Value) AsErrorTupple(this string errorMessage)
     {

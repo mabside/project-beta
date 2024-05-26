@@ -1,8 +1,6 @@
-﻿using Byhands.Application.Interfaces.Providers;
-using Byhands.DataAccess;
+﻿using Byhands.Abstractions.Providers;
+using Byhands.Contract;
 using Byhands.Domain.DTOs.Products;
-using Byhands.Domain.Entities.Products;
-using Byhands.Entities.Errors;
 using Byhands.Models.Bases;
 using MediatR;
 
@@ -23,41 +21,41 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
 
     public async Task<Result<NewProduct>> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var productCategory = await uow.productCategoryRepository().GetAsync(command.ProductCategoryId);
+        //var productCategory = await uow.productCategoryRepository().GetAsync(command.ProductCategoryId);
 
-        if (productCategory == null)
-            return new NullError($"Product category with id {command.ProductCategoryId} cannot be found");
+        //if (productCategory == null)
+        //    return new NullError($"Product category with id {command.ProductCategoryId} cannot be found");
 
-        var business = await uow.BusinessRepository().FirstOrDefaultAsync(
-            business => business.Id == command.BusinessId);
+        //var business = await uow.BusinessRepository().FirstOrDefaultAsync(
+        //    business => business.Id == command.BusinessId);
 
-        if (business == null)
-            return new NullError($"business id {command.BusinessId} cannot be found for user");
+        //if (business == null)
+        //    return new NullError($"business id {command.BusinessId} cannot be found for user");
 
-        var uploadResult = await this.uploadService.UploadFile(command.Image);
+        //var uploadResult = await this.uploadService.UploadFile(command.Image);
 
-        if (uploadResult.HasError)
-            return uploadResult.Error;
+        //if (uploadResult.HasError)
+        //    return uploadResult.Error;
 
-        var imageUrl = uploadResult.Value;
+        //var imageUrl = uploadResult.Value;
 
-        var result = Product.Create(
-            name: command.Name,
-            description: command.Description,
-            productCategoryId: command.ProductCategoryId,
-            businessId: command.BusinessId,
-            imageUrl: imageUrl);
+        //var result = Product.Create(
+        //    name: command.Name,
+        //    description: command.Description,
+        //    productCategoryId: command.ProductCategoryId,
+        //    businessId: command.BusinessId,
+        //    imageUrl: imageUrl);
 
-        if (result.HasError)
-            return result.Error;
+        //if (result.HasError)
+        //    return result.Error;
 
-        var newProduct = result.Value;
+        //var newProduct = result.Value;
 
-        newProduct = newProduct.EmbedSlug();
+        //newProduct = newProduct.EmbedSlug();
 
-        uow.ProductRepository().Add(newProduct);
-        await uow.CommitAsync(cancellationToken);
+        //uow.ProductRepository().Add(newProduct);
+        //await uow.CommitAsync(cancellationToken);
 
-        return new NewProduct(newProduct.Id);
+        return new NewProduct(Guid.NewGuid());
     }
 }

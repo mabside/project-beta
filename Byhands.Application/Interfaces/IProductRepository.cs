@@ -1,7 +1,7 @@
 ﻿using Byhands.DataAccess;
 using Byhands.Domain.Entities.Products;
 
-namespace Byhands.Application.Interfaces;
+namespace Byhands.Contract.Interfaces;
 
 public interface IProductRepository
     : IWriteOnlyRepository<Product, Guid>,

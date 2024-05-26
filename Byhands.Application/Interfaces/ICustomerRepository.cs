@@ -1,7 +1,7 @@
 ﻿using Byhands.DataAccess;
 using Byhands.Domain.Entities.Customers;
 
-namespace Byhands.Application.Interfaces;
+namespace Byhands.Contract.Interfaces;
 
 public interface ICustomerRepository
     : IWriteOnlyRepository<Customer, Guid>,

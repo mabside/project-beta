@@ -1,52 +1,42 @@
-﻿using Byhands.Application.Interfaces.Users;
-using Byhands.Application.Utils;
+﻿using Byhands.Contract;
+using Byhands.Contract.Interfaces.Auth;
 using Byhands.CQRS.Interfaces;
-using Byhands.Domain.Entities.Users;
-using Byhands.Entities.Errors;
 using Byhands.Models.Bases;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
+using DotNetCore.CAP;
 
 namespace Byhands.Application.Usecases.Customers.SigninCustomer;
 
-internal sealed class SigninCustomerCommandHandler : ICommandHandler<SigninCustomerCommand, SigninCustomerCommandResponse>
+internal sealed class SigninCustomerCommandHandler : ICommandHandler<SigninCustomerCommand, SigninCustomerResponse>
 {
+    private readonly IUnitOfWork unitOfWork;
+    private readonly ICapPublisher capPublisher;
     private readonly IAuthService authService;
-    private readonly UserManager<User> userManager;
-    private readonly SignInManager<User> signInManager;
-    private readonly JWTOptions jwtOptions;
 
     public SigninCustomerCommandHandler(
-        IAuthService authService,
-        UserManager<User> userManager,
-        SignInManager<User> signInManager,
-        IOptions<JWTOptions> jwtOptions)
+        IUnitOfWork unitOfWork,
+        ICapPublisher capPublisher,
+        IAuthService authService)
     {
+        this.unitOfWork = unitOfWork;
+        this.capPublisher = capPublisher;
         this.authService = authService;
-        this.userManager = userManager;
-        this.signInManager = signInManager;
-        this.jwtOptions = jwtOptions.Value;
     }
 
-    public async Task<Result<SigninCustomerCommandResponse>> Handle(SigninCustomerCommand command, CancellationToken cancellationToken)
+    public async Task<Result<SigninCustomerResponse>> Handle(SigninCustomerCommand command, CancellationToken cancellationToken)
     {
-        var isEmailValid = command.UserName.IsEmail();
+        using var transaction = unitOfWork.Begin(capPublisher);
 
-        if (!isEmailValid) return new BadRequestError("Invalid email");
+        var signInResult = await authService.SignInCustomerAsync(command, cancellationToken);
 
-        var user = await userManager.FindByEmailAsync(command.UserName);
+        if (signInResult.HasError)
+            return signInResult.Error;
 
-        if (user == null)
-            return new Error("Invalid Credentials", "", false);
+        var signInResponse = signInResult.Value;
 
-        var signInResult = await signInManager.PasswordSignInAsync(command.UserName, command.Password, false, false);
+        var commitResult = await unitOfWork.CommitAsync(transaction, cancellationToken);
+        if (commitResult.HasError)
+            return commitResult.Error;
 
-        if (!signInResult.Succeeded)
-            return new Error("Invalid Credentials", "", false);
-
-        var token = authService.GenerateJWTToken(user, jwtOptions.Secret);
-
-        return new SigninCustomerCommandResponse(user.UserId, token.Token);
+        return signInResponse;
     }
 }

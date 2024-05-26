@@ -1,6 +1,5 @@
-﻿using Byhands.DataAccess;
+﻿using Byhands.Contract;
 using Byhands.Domain.DTOs.Businesses;
-using Byhands.Domain.Entities.Businesses;
 using Byhands.Models.Bases;
 using MediatR;
 
@@ -18,14 +17,14 @@ internal class GetCustomerBusinessQueryHandler : IRequestHandler<GetCustomerBusi
     public async Task<Result<IReadOnlyCollection<BusinessInformation>>> Handle(
         GetCustomerBusinessQuery request, CancellationToken cancellationToken)
     {
-        var businesses = await uow.BusinessRepository().FindAsync(
-            business => business.CustomerId == request.CustomerId,
-            asNoTracking: true,
-            nameof(Business.Category));
+        //var businesses = await uow.BusinessRepository().FindAsync(
+        //    business => business.CustomerId == request.CustomerId,
+        //    asNoTracking: true,
+        //    nameof(Business.Category));
 
-        var customerBusinesses = businesses.Select(b => (BusinessInformation)b)
-            .ToList().AsReadOnly();
+        //var customerBusinesses = businesses.Select(b => (BusinessInformation)b)
+        //    .ToList().AsReadOnly();
 
-        return customerBusinesses;
+        return new Error("", "", false);
     }
 }

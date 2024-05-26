@@ -1,6 +1,6 @@
-﻿using Byhands.Application.Interfaces.Users;
-using Byhands.Application.Usecases.Customers.SigninCustomer;
+﻿using Byhands.Application.Usecases.Customers.SigninCustomer;
 using Byhands.Application.Usecases.Users.CreateUserIdentity;
+using Byhands.Contract.Interfaces.Users;
 using Byhands.Models.Bases;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,7 +40,7 @@ public class UserService : IUserService
         return result.Value;
     }
 
-    public async Task<Result<SigninCustomerCommandResponse>> SignInAsync(
+    public async Task<Result<SigninCustomerResponse>> SignInAsync(
         string username,
         string password,
         Guid CommandId,

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Businesses\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.18" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
@@ -20,6 +16,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Byhands.Domain\Byhands.Domain.csproj" />
     <ProjectReference Include="..\Byhands\Byhands.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Businesses\" />
   </ItemGroup>
 
 </Project>

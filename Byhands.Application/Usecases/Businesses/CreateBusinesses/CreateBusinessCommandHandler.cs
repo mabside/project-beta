@@ -1,6 +1,5 @@
-﻿using Byhands.DataAccess;
+﻿using Byhands.Contract;
 using Byhands.Domain.DTOs.Businesses;
-using Byhands.Domain.Entities.Businesses;
 using Byhands.Models.Bases;
 using MediatR;
 
@@ -19,61 +18,61 @@ public class CreateBusinessCommandHandler : IRequestHandler<CreateBusinessComman
         CreateBusinessCommand command,
         CancellationToken cancellationToken)
     {
-        var newLocationResult = Location.Create(
-            number: command.Number,
-            city: command.City,
-            state: command.State,
-            street: command.Street,
-            country: command.Country,
-            postalCode: command.PostalCode);
+        //var newLocationResult = Location.Create(
+        //    number: command.Number,
+        //    city: command.City,
+        //    state: command.State,
+        //    street: command.Street,
+        //    country: command.Country,
+        //    postalCode: command.PostalCode);
 
-        if (newLocationResult.HasError)
-            return newLocationResult.Error;
+        //if (newLocationResult.HasError)
+        //    return newLocationResult.Error;
 
-        var newLocation = newLocationResult.Value;
+        //var newLocation = newLocationResult.Value;
 
-        var businessCategory = await uow.BusinessCategoryRepository()
-            .GetAsync(command.BusinessCategoryId);
+        //var businessCategory = await uow.BusinessCategoryRepository()
+        //    .GetAsync(command.BusinessCategoryId);
 
-        if (businessCategory == null)
-            return new Error(
-                "invalid business category",
-                "Invalid.Category",
-                false);
+        //if (businessCategory == null)
+        //    return new Error(
+        //        "invalid business category",
+        //        "Invalid.Category",
+        //        false);
 
-        var customer = await uow.CustomerRepository()
-            .GetAsync(command.CustomerId);
+        //var customer = await uow.CustomerRepository()
+        //    .GetAsync(command.CustomerId);
 
-        if (customer == null)
-            return new Error(
-                "invalid customer",
-                "Invalid.Customer",
-                false);
+        //if (customer == null)
+        //    return new Error(
+        //        "invalid customer",
+        //        "Invalid.Customer",
+        //        false);
 
-        var newBusinessResult = Business.Create(
-            name: command.Name,
-            description: command.Description,
-            email: command.Email,
-            logoUrl: command.LogoUrl,
-            bannerUrl: command.BannerUrl,
-            websiteUrl: command.WebsiteUrl,
-            businessCategoryId: command.BusinessCategoryId,
-            category: businessCategory,
-            customerId: command.CustomerId,
-            customer: customer,
-            location: newLocation,
-            socialHandles: null);
+        //var newBusinessResult = Business.Create(
+        //    name: command.Name,
+        //    description: command.Description,
+        //    email: command.Email,
+        //    logoUrl: command.LogoUrl,
+        //    bannerUrl: command.BannerUrl,
+        //    websiteUrl: command.WebsiteUrl,
+        //    businessCategoryId: command.BusinessCategoryId,
+        //    category: businessCategory,
+        //    customerId: command.CustomerId,
+        //    customer: customer,
+        //    location: newLocation,
+        //    socialHandles: null);
 
-        if (newBusinessResult.HasError)
-            return newBusinessResult.Error;
+        //if (newBusinessResult.HasError)
+        //    return newBusinessResult.Error;
 
-        var newBusiness = newBusinessResult.Value;
+        //var newBusiness = newBusinessResult.Value;
 
-        newBusiness = newBusiness.EmbedSlug();
+        //newBusiness = newBusiness.EmbedSlug();
 
-        uow.BusinessRepository().Add(newBusiness);
-        await uow.CommitAsync(cancellationToken);
+        //uow.BusinessRepository().Add(newBusiness);
+        //await uow.CommitAsync(cancellationToken);
 
-        return new NewBusiness(newBusiness.Id);
+        return new NewBusiness(Guid.NewGuid());
     }
 }

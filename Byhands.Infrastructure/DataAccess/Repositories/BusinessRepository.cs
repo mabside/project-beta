@@ -1,4 +1,4 @@
-﻿using Byhands.Application.Interfaces;
+﻿using Byhands.Contract.Interfaces;
 using Byhands.DataAccess;
 using Byhands.Domain.Entities.Businesses;
 

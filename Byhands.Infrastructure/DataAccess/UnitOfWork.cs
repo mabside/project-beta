@@ -1,6 +1,10 @@
-﻿using Byhands.Application.Interfaces;
-using Byhands.DataAccess;
-using Byhands.Infrastructure.DataAccess.Repositories;
+﻿using Byhands.Contract;
+using Byhands.Entities.Errors;
+using Byhands.Models.Bases;
+using DotNetCore.CAP;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Npgsql;
 
 namespace Byhands.Infrastructure.DataAccess;
 
@@ -20,34 +24,38 @@ public class UnitOfWork : IUnitOfWork
         GC.SuppressFinalize(this);
     }
 
-    public IProductRepository ProductRepository()
+    public IDbContextTransaction Begin(ICapPublisher capPublisher, bool autoCommit = false)
     {
-        return new ProductRepository(_databaseContext);
+        return _databaseContext.Database.BeginTransaction(capPublisher, autoCommit);
     }
 
-    public IBusinessRepository BusinessRepository()
+    public async Task<Result> CommitAsync(IDbContextTransaction transaction, CancellationToken cancellationToken)
     {
-        return new BusinessRepository(_databaseContext);
-    }
+        try
+        {
+            await _databaseContext.SaveChangesAsync(cancellationToken);
 
-    public ICustomerRepository CustomerRepository()
-    {
-        return new CustomerRepository(_databaseContext);
-    }
+            await transaction.CommitAsync(cancellationToken);
 
-    public IBusinessCategoryRepository BusinessCategoryRepository()
-    {
-        return new BusinessCategoryRepository(_databaseContext);
-    }
+            return new Success();
+        }
+        catch (Exception ex) when (ex is PostgresException
+                                      or DbUpdateException
+                                      or OperationCanceledException
+                                      or DbUpdateConcurrencyException)
+        {
+            //TODO: handle error codes
+            if (ex is PostgresException x)
+                return new ExceptionError(x.Message, "", false)
+                    .ToFriendlyErrorMessage();
 
-    public IProductCategoryRepository productCategoryRepository()
-    {
-        return new productCategoryRepository(_databaseContext);
-    }
+            if (ex.InnerException is PostgresException pex)
+                return new ExceptionError(pex.Message, "", false)
+                    .ToFriendlyErrorMessage();
 
-    public Task<int> CommitAsync(CancellationToken cancellationToken)
-    {
-        return _databaseContext.SaveChangesAsync(cancellationToken);
+            //TODO: Detect and report transient error
+            return new ExceptionError(ex.Message, "", false);
+        }
     }
 
     ~UnitOfWork()

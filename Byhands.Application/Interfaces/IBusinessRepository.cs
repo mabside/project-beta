@@ -1,7 +1,7 @@
 ﻿using Byhands.DataAccess;
 using Byhands.Domain.Entities.Businesses;
 
-namespace Byhands.Application.Interfaces;
+namespace Byhands.Contract.Interfaces;
 
 public interface IBusinessRepository
     : IWriteOnlyRepository<Business, Guid>,

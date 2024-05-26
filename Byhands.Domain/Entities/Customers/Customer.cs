@@ -47,6 +47,8 @@ public class Customer : BaseEntity<Guid>
         if (result.HasError)
             return result.Error;
 
+        //@Todo : raise events needed
+
         return result;
     }
 }

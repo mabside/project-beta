@@ -3,7 +3,6 @@ using Byhands.CQRS.Interfaces;
 using Byhands.Domain.Entities.Users;
 using Byhands.Entities.Errors;
 using Byhands.Models.Bases;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 namespace Byhands.Application.Usecases.Users.CreateUserIdentity;

@@ -1,4 +1,4 @@
-﻿using Byhands.Application.Interfaces;
+﻿using Byhands.Contract.Interfaces;
 using Byhands.Domain.DTOs.Products;
 using Byhands.Domain.Entities.Products;
 using Byhands.Entities.Errors;

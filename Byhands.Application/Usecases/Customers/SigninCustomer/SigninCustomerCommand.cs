@@ -1,14 +1,12 @@
 ﻿using Byhands.CQRS;
-using Byhands.Models.Bases;
-using MediatR;
 
 namespace Byhands.Application.Usecases.Customers.SigninCustomer;
 
 public record SigninCustomerCommand(
     Guid CommandId,
     string UserName,
-    string Password) : CommandBase<SigninCustomerCommandResponse>(CommandId);
+    string Password) : CommandBase<SigninCustomerResponse>(CommandId);
 
-public record SigninCustomerCommandResponse(
+public record SigninCustomerResponse(
     string UserId,
     string Token);
