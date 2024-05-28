@@ -34,7 +34,7 @@ public class WeatherForecastController : ControllerBase
         {
             var userClaims = identity.Claims;
 
-            return userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Surname)?.Value;
+             return userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Name)?.Value;
         }
 
         return null;
